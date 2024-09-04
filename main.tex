@@ -1,0 +1,28 @@
+\documentclass[10pt,a4paper,oneside]{book}
+
+% course info (for title)
+\newcommand{\courseid}{PHYS 410}
+\newcommand{\coursetitle}{Classical Mechanics}
+\newcommand{\semester}{Fall 2024}
+\newcommand{\credit}{Adapted from 
+    \textit{Classical Mechanics} by John R. Taylor.}  
+
+\input{preamble.tex}
+\graphicspath{{figures/}}
+
+\usepackage{subfiles}
+
+\begin{document}
+\tableofcontents
+\blfootnote{* \credit}
+\graphicspath{{figures/}}
+
+\input{chapters/ch1.tex} % newton's laws
+\input{chapters/ch2.tex} % projectiles and charged particles
+\input{chapters/ch3.tex} % momentum and angular momentum
+\input{chapters/ch4.tex} % energy
+\input{chapters/ch5.tex} % calculus of variations
+\input{chapters/ch6.tex} % lagrange's equations
+\input{chapters/ch7.tex} % two body central force problems
+
+\end{document}

@@ -1,0 +1,298 @@
+\chapter{Lagrange's Equations}
+\section{Lagrange's Equations for Unconstrained Motion}
+Consider a particle unconstrained in three dimensions, subject to some conservative force $\mbf{F}(\mbf r)$. The kinetic energy is, of course,
+\[ T = \frac{1}{2}mv^2 = \frac{1}{2}m (\dot x^2 + \dot y^2 + \dot z^2) \]
+and its potential energy is
+\[ U = U(\mbf r) = -\int_C \mbf F \cdot \dd \mbf r \]
+The \textbf{Lagrangian} is defined as the difference between the kinetic and potential energy,
+\[ \L = T - U \]
+Considering the partial derivatives of the Lagrangian,
+\begin{align*}
+    \pdv{\L}{x_i} = -\pdv{U}{x_i} = F_{x_i}
+\end{align*}
+and
+\begin{align*}
+    \pdv{\L}{\dot x_i} = \pdv{T}{x_i} = m\dot x_i
+\end{align*}
+then, the Euler-Lagrange equation for the action integral $\int \L \dd t$ gives
+\[ \dv{t} m\mbf{\dot r} = \mbf F\]
+which is just Newton's second law. One may be interested in asking why this turns out to be the case--what is the physical interpretation of the \textit{difference} between the energies. The answer, unfortunately, seems to be that there isn't a satisfying reason. It just so happens that the quantity $T-U$ is the one which gives an equivalence to newton's second law when put in the Euler-Lagrange equation. 
+\begin{theorem}[Hamilton's Principle]
+    The actual path which a particle follows between two points $1$ and $2$ in a given time interval $t_1$ to $t_2$, is such that the action integral
+    \[ S = \int_{t_1}^{t_2} \L\, \dd t \]
+    is stationary. 
+\end{theorem}
+One of the primary points of importance for Hamilton's Principle as it relates to classical mechanics is how it lets us generalize the analysis of objects' motion to more or less any coordinate system.
+
+The only restriction on what type of coordinate system we may use is that it must be inertial--we previously observed that the Euler-Lagrange equation applied to the quantity $T-U$ is equivalent to Newton's second law, but since Newton's second law isn't true in non-inertial frames, neither are the Euler-Lagrange equations. 
+
+Another nice result is that we were able to notice that $\partial \L / \partial x$ is the $x$ component of the force and that $\partial \L/\partial \dot x$ is the $x$ component of the momentum. Motivated by this, we call these derivatives the \textbf{generalized force} and \textbf{generalized momentum} respectively. These are not necessarily equal to our existing notions of force and linear momentum, but in cartesian coordinates they are. 
+\begin{example}[One Particle in Two Dimensions; Polar Coordinates]
+     Find the Lagrange equations for a particle moving in two dimensions subject to a force $\mbf F$, using polar coordinates.
+
+     We have been given $q_1 = r$ and $q_2 = \phi$ as the generalized coordinates for this problem. The components of the velocity are $v_r = \dot r$ and $v_\phi = r\dot\phi$, so the kinetic energy is $T = \frac{1}{2}mv^2 = \frac{1}{2}m(\dot r^2 + r^2\dot\phi^2)$. The Lagrangian is then
+     \[ \L = T - U = \frac{1}{2}m(\dot r^2 + r^2\dot \phi^2) - U(r, \phi) \]
+     This gives us two Euler-Lagrange equations:
+     \[ \pdv{\L}{r} = \dv{t} \pdv{\L}{\dot r} \quad\text{and}\quad \pdv{\L}{\phi} = \dv{t} \pdv{\L}{\dot\phi} \]
+     focusing on the $r$ equation first, we find
+     \[ mr\dot\phi^2 -\pdv{U}{r} = m\ddot r\]
+     Noticing that $-\partial U/\partial r$ is just $F_r$, the radial component of the force, we get
+     \[ F_r = m(\ddot r - r\dot\phi^2) \]
+     You may recognize this as a result we already found earlier through geometric analysis with Newton's Second Law, although with much greater difficulty. 
+
+     For the $\phi$ equation, we find
+     \[ -\pdv{U}{\phi} = \dv{t} (mr^2\dot\phi) \]
+     Recalling that $mr^2\dot\phi$ is just the angular momentum $L$ of the particle about the origin,
+     \[ -\pdv{U}{\phi} = \dv{L}{t} \]
+     To interpret this, we are looking for some force of the form $\mbf F = - \nabla U$. This requires that we recall the form of the gradient in polar:
+     \[ \nabla U = \pdv{U}{r}\rhat + \frac{1}{r} \pdv{U}{\phi}\phihat \]
+     The $\phi$ component of the force is just the $\phihat$ term in $\nabla U$, multiplied by $-1$:
+     \[ F_\phi = -\frac{1}{r}\pdv{U}{\phi} = \frac{1}{r}\dv{L}{t} \]
+     or, multiplying by $r$,
+     \[ \dv{L}{t} = rF_\phi = \Gamma \]
+     This is simply the result that the torque is equal to the derivative of the angular momentum, as we know. 
+\end{example}
+The previous example illustrates a beautiful feature of Lagrange's equations; when we chose an appropriate set of generalized coordinates to analyze, the equations appear in a corresponding, natural form.  When we choose $r$ and $\phi$ for our coordinates, the $\phi$ component of the generalized momentum turns out to be the angular momentum, and the $\phi$ component of the generalized force turns out to just be the torque. 
+
+Additionally, suppose that the $\phi$ component of the generalized force turns out to be zero--that is, suppose $\partial \L/\partial \phi = 0$. This corresponds to zero torque, and we would expect the $\phi$ component of the generalized momentum to be constant. The Euler-Lagrange equation
+\[ \pdv{\L}{\phi} = \dv{t} \pdv{\L}{\dot \phi} \]
+assures us that this is the case. This result generalizes quite nicely, so that if the Lagrangian does not depend on any given generalized coordinate, then the corresponding generalized momentum is constant. This allows us to understand a variety of conservation laws in a new light, as we will explore later in the chapter. 
+\subsection*{Several Unconstrained Particles}
+The extension of the above ideas to a system of $N$ unconstrained particles is quite straightforward. The net kinetic energy of the system is
+\[ T = \frac{1}{2}\sum_\alpha m_\alpha v_\alpha^2 \]
+or, in cartesian coordinates,
+\[ T = \frac{1}{2}\sum_\alpha m_\alpha (\dot x_\alpha^2 + \dot y_\alpha^2 + \dot z_\alpha ^2) \]
+Each pair of particles has a potential energy, and every particle has an external potential energy, so the total potential energy is
+\[ U = \sum_\alpha U_\alpha^\text{ext} + \sum_\alpha \sum_{\beta > \alpha} U_{\alpha\beta}(\mbf r_\alpha, \mbf r_\beta)  \]
+Then, the Lagrangian is
+\[ \L = \sum_\alpha\pqty{ \frac{1}{2}m_\alpha\mbf v_\alpha ^2 - U_\alpha^\text{ext} - \sum_{\beta>\alpha} U_{\alpha\beta}}\]
+if all particles are unconstrained in three dimensional space, this yields $3N$ Euler-Lagrange equations of the form
+\[ \pdv{\L}{q_i} = \dv{t} \pdv{\L}{\dot q_i }\]
+where $(q_1, q_2, q_3)$ represents the position of particle $1$, $(q_4, q_5, q_6)$ represents the position of particle $2$, and so on.
+\section{Constrained Systems}
+Perhaps the greatest advantage of the Lagrangian approach is that it can handle systems that are constrained so they are not able to move everywhere in their given space. For instance, a pendulum on a taut string is constrained such that $\ell = \sqrt{x^2+y^2}$ is constant. 
+
+This has the effect of eliminating one of the coordinates. One way we could do this is by solving for $y$ and writing $y = \sqrt{\ell^2 - x^2}$. A much simpler approach, however, is writing the coordinate of the system in terms of the angle $\phi$ made between the pendulum and the vertical axis.
+
+In polar coordinates, the speed of the particle is $\ell^2\dot\phi^2$ and the height above the lowest point on the particle's path is $h = \ell(1-\cos\phi)$. Therefore, the potential energy becomes $U = mgh = mg\ell(1-\cos\phi)$. This gives a Lagrangian of
+\[ \L = \frac{1}{2}m\ell^2\dot\phi^2 - mg\ell(1-\cos\phi) \]
+This gives the equation of motion
+\[ m\ell^2\ddot\phi = -mg\ell\sin\phi\]
+The right side of this equation is just the torque $\Gamma$ exerted by gravity, and the left side is the product between the moment of inertia $I$ of the mass and the angular acceleration $\alpha$. Therefore, the Euler-Lagrange equation reduces down to simply
+\[ \Gamma = I\alpha, \]
+a familiar result from elementary physics.
+\section{Constrained Systems in General}
+\subsection*{Generalized Coordinates}
+Consider an arbitrary system of $N$ particles $\alpha = 1, \dots, N$ with positions $\mbf r_\alpha$. We say that the parameters $q_1, \dots, q_n$ are a set of \textbf{generalized coordinates} for the system if each position $\mbf r_\alpha$ can be expressed as a function of $q_1, \dots, q_n$, and possibly time,
+\begin{equation} \label{gen1}
+    \mbf r_\alpha = \mbf r_\alpha(q_1, \dots, q_n, t) 
+\end{equation}
+And conversely each $q_i$ can be expressed in terms of the $\mbf r_\alpha$ and possibly $t$:
+\[ q_i = q_i(\mbf r_1, \dots, \mbf r_N, t) \]
+Additionally, we require that the number of generalized coordinates ($n$) is the smallest number that allows our system to be parameterized in this way. In $3D$ space with no constraints, we have $n=3N$, and adding constraints or reducing the number of dimensions decreases this further. 
+
+For instance, in the previous example our generalized coordinate system consisted of only the angle $\phi$, and the analog to (\ref{gen1}) is
+\[ \mbf r \equiv (x,y) = (\ell\cos\phi, \ell\sin\phi)\]
+We may also have generalized coordinates that depend on the time $t$. For instance, consider a pendulum fixed to a cart forced to accelerate with a fixed acceleration $a$. 
+
+If we take the angle $\phi$ of the pendulum to be the generalized coordinate, we find
+\[ \mbf r = (x, y) = \pqty{\frac{1}{2}at^2 + \ell\sin\phi, \ell\cos\phi} = \mbf r(\phi, t) \]
+We sometimes call the relation between $\mbf r$ and a generalized coordinate \textbf{natural} if the relation between them does not involve $t$. We will find that some convenient properties of natural systems do not apply to systems where there is a time dependence. 
+\subsection*{Degrees of Freedom}
+The number of degrees of freedom of a system is the number of coordinates that can be independently varied with a small displacement; that is, it is the number of independent ``directions" the system can move in. For instance, a simple pendulum has only one degree of freedom--the angle $\phi$. 
+
+If the number of degrees of freedom of an $N$ particle system in three dimensions is less than $3N$, we say that the system is \textbf{constrained} (in two dimensions, the corresponding number is of course $2N$). The simple pendulum is constrained because it lives in two dimensional space but only has one degree of freedom. 
+
+If the number of degrees of freedom in a system is equal to the number of generalized coordinates needed to describe its configuration, the system is said to be \textbf{holonomic}. That is, a holonomic system has $n$ degrees of freedom and can be described by the $n$ generalized coordinates $q_1, \dots, q_n$. Holonomic systems are much easier to treat than nonholonomic systems, so we will only consider holonomic systems here.
+
+It may seem that most, if not all, systems should be holonomic. This turns out to not be the case, as even relatively simple systems may be nonholonomic. For instance, consider a sphere free to roll (but not slide) along the $xy$ plane in three dimensional space. If we roll the sphere a distance $d$ along the $x$ axis, then a distance $d$ along the $y$ axis, and then bring it back to the origin along the straight line of length $\sqrt{2}d$, the orientation of the ball will be different than it started as. Even though the number of degrees of freedom is only two, we need five generalized coordinates ($x$, $y$, and the orientation about the $x$, $y$, and $z$ axes) to fully describe the system's configuration. 
+\section{Proof of Lagrange's Equations with Constraints}
+To keep things simple, we will assume the system has just one particle, although the generalization to many problems is relatively straightforward. We will suppose the particle is constrained to move on a surface and has generalized coordinates $q_1, q_2$. 
+
+We will first recognize that there are two types of forces that can act on the particle. First, there are the forces of constraint that keep the particle on the surface it is constrained to. Then, there are the other nonconstraint forces that dictate the motion of the particle within its surface. We will denote the net force as $\mbf F_\text{tot} = \mbf F_\text{cstr} + \mbf F$.
+
+We define the potential energy of the system as being given by
+\[ \mbf F = -\nabla U(\mbf r, t) \]
+where $\mbf F$ is the net nonconstraint force on the particle. The potential energy does not depent on the constraint forces at all because they are normal to the path of the particle and thus do no work.
+
+The Lagrangian is, as usual, $\L = T - U$. Critically, this means that Lagrangian mechanics allows us to completely disregard the forces of constraint, as we will see shortly.
+\subsection*{The Action Integral is Stationary at the Right Path}
+Consider any two points $\mbf r_1$ and $\mbf r_2$ through which the particle passes through at times $t_1$, $t_2$. I shall denote by $\mbf r(t)$ the ``right" path (the path the particle actually follows), and by $\mbf R(t)$ any neighboring ``wrong" path between the two points. We can write
+\[ \mbf R(t) = \mbf r(t) + \boldsymbol{\epsilon}(t) \]
+Which defines $\boldsymbol{\epsilon}(t)$ as the vector pointing from the location $\mbf r(t)$ on the right path to the location $\mbf R(t)$ on the nearby wrong path. Because $\mbf R(t)$ also passes through the two points at the same $t$ values, we have $\boldsymbol{\epsilon}(t_1) = \boldsymbol{\epsilon}(t_2) = 0$. 
+
+We will write the action integral $S$ along $\mbf R$ as
+\[ S = \int_{t_1}^{t_2} \L(\mbf R, \mbf{\dot R}, t)\, \dd t\]
+and $S_0$ as the corresponding action integral for the correct path $\mbf r(t)$. We shall now prove that when $\boldsymbol{\epsilon} = 0$ (i.e. when $\mbf R = \mbf r$), the difference in the action integral $\delta S = S - S_0$ is zero.
+
+The difference in the action integrals can be written in terms of the difference of the Lagrangians of the two paths,
+\[ \delta \L = \L(\mbf R, \mbf{\dot R}, t) - \L(\mbf r, \mbf{\dot r}, t)\]
+substituting $\mbf R(t) = \mbf r(t) + \boldsymbol{\epsilon}(t)$ and $\L(\mbf r, \mbf{\dot r}, t) = \frac{1}{2}m\mbf{\dot r}^2 - U(\mbf r, t)$, we find
+\begin{align*}
+    \delta \L &= \frac{1}{2}m(\mbf{\dot r} + \boldsymbol{\dot \epsilon})^2 - U(\mbf r + \boldsymbol{\epsilon}, t) - \frac{1}{2} m\mbf{\dot r}^2 + U(\mbf r, t) \\
+    &= m(\mbf{\dot r} \cdot \boldsymbol{\dot \epsilon}) + \frac{1}{2}m \boldsymbol{\dot \epsilon}^2 - [U(\mbf r + \boldsymbol \epsilon, t) - U(\mbf r, t)] \\
+    &= m(\mbf{\dot r} \cdot \boldsymbol{\dot \epsilon}) + \frac{1}{2}m \boldsymbol{\dot \epsilon}^2 - \nabla U \cdot \boldsymbol{\epsilon}
+\end{align*}
+The term involving $\epsilon^2$ is negligible compared to the first order terms if $\epsilon$ is small, so
+\[ \delta \L =m(\mbf{\dot r} \cdot \boldsymbol{\dot \epsilon})  - \nabla U \cdot \boldsymbol{\epsilon} \]
+The difference in the action integrals is then
+\begin{align*}
+    \delta S = \int_{t_1}^{t_2}\delta L \, \dd t &= \int_{t_1}^{t_2}\bqty{ m(\mbf{\dot r} \cdot \boldsymbol{\dot \epsilon})  - \nabla U \cdot \boldsymbol{\epsilon}} \, \dd t
+\end{align*}
+The term on the left may be integrated by parts to obtain
+\begin{align*}
+    \delta S &= \mbf{\dot r} \cdot \boldsymbol{\epsilon} \biggr|_{t_1}^{t_2} - \int_{t_1}^{t_2} \bqty{m(\mbf{\ddot r} \cdot \boldsymbol\epsilon) + \nabla U \cdot \boldsymbol{\epsilon}}\dd t
+    \intertext{Because $\boldsymbol{\epsilon}$ is zero at the endpoints, the left term disappears so}
+    \delta S &= - \int_{t_1}^{t_2} \bqty{m(\mbf{\ddot r} \cdot \boldsymbol\epsilon) + \nabla U \cdot \boldsymbol{\epsilon}}\dd t \\
+    &= -\int_{t_1}^{t_2} \boldsymbol{\epsilon} \cdot \bqty{m\mbf{\ddot r} + \nabla U} \, \dd t
+\end{align*}
+Newton's second law tells us that $m\mbf{\ddot r}$ is just $\mbf F_\text{tot} = \mbf F_\text{cstr} + \mbf F$, and we also know that $\nabla U = -\mbf F$. Thus, the integral becomes
+\[ \delta S = -\int_{t_1}^{t_2} \boldsymbol{\epsilon} \cdot \mbf{F}_\text{cstr} \, \dd t\]
+But the constraint force is normal to the surface, while $\boldsymbol{\epsilon}$ lies within it. Therefore, their dot product is zero and $\delta S = 0$ as $\boldsymbol \epsilon \to \mbf 0$.
+
+I will leave the examples of Lagrange's equations to the reader, as they are best when done independently without following the notes.
+\section{Generalized Momenta and Ignorable Coordinates}
+Recall that in a system with generalized coordinates $q_1, \dots, q_n$, we refer to the $n$ quantities $\partial \L /\partial q_i = F_i$ as the components of the generalized force and the $n$ quantities $\partial \L /\partial \dot q_i = p_i$ as the components of the generalized momentum. With this terminology the Euler-Lagrange equation becomes
+\[ F_i = \dv{p_i}{t} \]
+That is, ``generalized force = rate of change of generalized momentum." If the Lagrangian is independent of a coordinate $q_i$, then the $i$th component of the generalized force is zero, so the $i$th component of the generalized momentum is constant. 
+
+It's important to realize that the generalized forces and momenta are, in general, not the same as the regular forces and momenta. For instance, when analyzing a simple pendulum with respect to the generalized coordinate $\phi$, the generalized force becomes the torque on the pendulum and the generalized momentum becomes the angular momentum of the pendulum.
+
+When the Lagrangian is independent of a particular coordinate, the corresponding component of the generalized momentum is conserved, and we refer to the coordinate as \textbf{ignorable} or \textbf{cyclic}. As one would expect, we often try and pick our coordinate system with the goal of having some ignorable coordinates. 
+\section{Conservation Laws}
+We have already explored the concepts of conservation of energy and momentum through Newtonian mechanics. Now, we will see how these concepts apply to the Lagrangian formalism. 
+\subsection*{Conservation of Total Momentum}
+As we know, the total momentum of an isolated $N$ particle system is conserved. To find this result with the Lagrangian, we must first notice that the Lagrangian is \textbf{translationally invariant}; that is, if we were to pick up the entire $N$ particle system and give every particle some identical displacement $\boldsymbol{\epsilon}$, nothing about the system should change. Mathematically, this looks like
+\[ \mbf r_1 \to \mbf r_1 + \boldsymbol{\epsilon}, \quad \dots, \quad \mbf r_N \to \mbf r_N + \boldsymbol{\epsilon}\]
+For the Lagrangian to be translationally invariant, the potential energy must be unaffected by this displacement, so that
+\[ U(\mbf r_1, \dots, \mbf r_N, t) = U(\mbf r_1, \boldsymbol{\epsilon} , \dots , \mbf r_N + \boldsymbol{\epsilon}, t)\]
+Or, more briefly, $\delta U = 0$. Since the velocities of the particles are not affected by the shift, then we must also have $\delta T = 0$, so
+\[ \delta \L = \delta (T-U) = \delta T - \delta U = 0\]
+If we let $\boldsymbol{\epsilon}$ be some infinitesimal displacement in the $x$ direction $\epsilon_x$, then we obtain
+\[ \delta \L = \epsilon_x \pdv{\L}{x_1} + \cdots + \epsilon_x \pdv{\L}{x_N} = \sum_i \epsilon_x \pdv{L}{x_i} = 0 \]
+The Euler-Lagrange equation lets us write
+\[ \pdv{\L}{x_i} = \dv{t} \pdv{\L}{\dot x_i} = \dv{t} p_{ix}\]
+or, in other words
+\[ \dv{p_{ix}}{t} = 0,\]
+We can repeat this process for the $y$ and $z$ coordinates to find that each component of the momentum, and thus the total momentum $\mbf P$, is conserved.
+\subsection*{Conservation of Energy}
+The chain rule allows us to write
+\[ \dv{t} \L(q_1, \dots, q_n, \dot q_1, \dots, \dot q_n, t) = \sum_i \pdv{\L}{q_i}\dot q_i + \sum_i \pdv{\L}{\dot q_i} \ddot q_i + \pdv{\L}{t} \]
+The quantity $\partial \L / \partial q_i$ is just the derivative of the generalized momentum $\dot p_i$, and the quantity $\partial \L/\partial \dot q_i$ is just the generalized momentum. Thus, the derivative becomes
+\begin{align*}
+    \dv{\L}{t} &= \sum_i (\dot p_i \dot q_i + p_i \ddot q_i) + \pdv{\L}{t} \\
+    &= \dv{t}\sum_i (p_i \dot q_i) + \pdv{\L}{t}
+\end{align*}
+For many systems, the Lagrangian doesn't depend explicitly on time, so the $\partial \L/\partial t$ term vanishes and we can rearrange to obtain $\dv{t} \pqty{p_i\dot q_i - \L } = 0$. The quantity inside the derivative is so important that we give it its own name, the \textbf{Hamiltonian} $\H$, defined as
+\[ \H \equiv p_i \dot q_i - \L \]
+These results can be expressed compactly in the following theorem:
+\begin{theorem}
+    If the Lagrangian $\L$ does not depend explicitly on time (that is, $\partial \L/\partial t = 0$), then the Hamiltonian $\H$ is conserved.
+\end{theorem}
+It should be immediately apparent why this is important--any conservation law can be used to solve many problems. In fact, it turns out that there is an entire formulation of mechanics based solely on the Hamiltonian. 
+
+In many cases, the Hamiltonian works out to just be the total energy of the system, as we will now prove. Specifically, this is the case as long as the generalized coordinate system is natural. That is, the relation between the generalized coordinates and cartesian coordinates is time-independent. 
+
+To start our proof, first express the total kinetic energy $T = \frac{1}{2}\sum_\alpha m_\alpha \mbf{\dot r}_\alpha^2$ in terms of the generalized coordinates. Given that $\mbf r_\alpha = \mbf r_\alpha (q_1, \dots, q_n)$, we obtain 
+\[ \mbf{\dot r}_\alpha = \sum_i \pdv{\mbf r_\alpha}{q_i}\dot q_i\]
+and
+\[ \mbf {\dot r}_\alpha^2 = \mbf {\dot r}_\alpha \cdot \mbf {\dot r}_\alpha = \pqty{\sum_j \pdv{\mbf r_\alpha}{q_j}\dot q_j}\cdot \pqty{\sum_k \pdv{\mbf r_\alpha}{q_k}\dot q_k} \]
+The kinetic energy can now be expressed as a triple sum,
+\[ T = \frac{1}{2}\sum_{j,k} A_{j,k}\dot q_j \dot q_k\]
+where $A_{j,k}$ is shorthand for the sum
+\[ A_{j,k} = \sum_\alpha m_\alpha \pqty{\pdv{\mbf r_\alpha}{q_j}\cdot \pdv{\mbf r_\alpha}{q_k}}\]
+Now, the generalized momentum of the system is given by $p_i = \pdv{\L}{\dot q_i} = \pdv{T}{\dot q_i}$, so
+\begin{align*}
+    p_i &= \frac{1}{2} \sum_{j,k} (A_{j,k}\dot q_j + A_{j,k}\dot q_k) \\
+    &= \sum_{j,k} \pqty{\pdv{A_{j,k}}{\dot q_i}\dot q_j\dot q_k + A_{j,k}\pdv{\dot q_j}{\dot q_i}\dot q_k + A_{j,k}\dot q_j \pdv{\dot q_k}{\dot q_i}}
+    \intertext{The first term is zero because $A_{j,k}$ does not depend on any $\dot q_i$. Further, the quantity $\partial \dot q_j/\partial \dot q_i$ is zero if $i\neq j$ and one if $i = j$, so the sum can be rewritten as}
+    p_i &= \frac{1}{2}\pqty{\sum_j A_{j,i}\dot q_j} + \frac{1}{2}\pqty{\sum_k A_{i,k}\dot q_k}
+\end{align*}
+But since $A_{j,k} = A_{k,j}$, we can combine the sums and simply write
+\[ p_i = \sum_j A_{i,j}\dot q_j\]
+Then, the quantity $\sum_i p_i \dot q_i$ is given by
+\[ \sum_i p_i\dot q_i = \sum_{i,j} A_{i,j}\dot q_j \dot q_i = 2T \]
+and so $\H = \sum_i p_i\dot q_i - \L = 2T - (T - U) = T + U$, as desired. 
+\begin{theorem}
+    If the transformation between Cartesian coordinates and a given set of generalized coordinates $q_1, \dots, q_n$ is natural, then the Hamiltonian $\H$ is just equal to the total energy $T+U$. 
+\end{theorem}
+The previous results can be distincly summarized:
+\begin{enumerate}
+    \item If the Lagrangian is invariant under time, the Hamiltonian is conserved.
+    \item If the Lagrangian is invariant under displacement, the generalized momentum is conserved. 
+\end{enumerate}
+Both of these results are manifestations of \textit{Noether's Theorem}, which states that each ``type" of invariance of the action corresponds to a unique conservation law.  
+\section{Lagrange's Equations for Magnetic Forces}
+We have so far consistently defined the Lagrangian as $\L = T - U$, although we will now see that in some systems, such as the movement of a charged particle in a magnetic field, $T-U$ no longer works. We will show that it is indeed possible, with a few modifications, to treat these systems with a Lagrangian approach. 
+\subsection*{Definition and Nonuniqueness of the Lagrangian}
+\begin{definition}
+    For a given mechanical system with generalized coordinates $q_1, \dots, q_n$, a \textbf{Lagrangian} $\L$ is a function $\L(q_1, \dots, q_n, \dot q_1, \dots, \dot q_n)$ of the generalized coordinates and generalized velocities such that the correct equations of motion for the system are given by the Lagrange equations
+    \[ \pdv{\L}{q_i} = \dv{t} \pdv{\L}{\dot q_i} \]
+    for $i = 1, \dots, n$. 
+\end{definition}
+Of course, our previous definition of the Lagrangian fits this new definition as well, but the new one is much more general. Another important result of this new definition is the fact that the Lagrangian is not unique. 
+
+Let's temporarily constrain our view to a system with just one generalized coordinate $x$ to simplify this discussion. Let $\L$ be a Lagrangian for the system. Then, the equation of motion governing the system is 
+\[ \pdv{\L}{x} = \dv{t} \pdv{\L}{\dot x} \]
+Now, let $f(x, \dot x)$ be any function satisfying $\pdv{f}{x} = \dv{t} \pdv{f}{\dot x}$. One such function could be $f(x, \dot x) = x\dot x$. If we replace our Lagrangian with $\L' = \L + f$, we will see that the equation of motion is \textit{identical}, despite the fact that the Lagrangian is different. 
+
+This means that we are able to find many unique Lagrangians, each just as valid as any other. With this in mind, we will not draw our attention to the behavior of a charge in a magnetic field.
+\subsection*{Lagrangian for a Charge in a Magnetic Field}
+Consider now a particle of mass $m$ and charge $q$ moving in electric and magnetic fields $\mbf E$ and $\mbf B$. The Lorentz force on the particle is given by $\mbf F = q(\mbf E + \mbf{\dot r}\times \mbf B)$. Newton's second law then gives
+\[ m \mbf{\ddot r} = q(\mbf E + \mbf{\dot r}\times \mbf B) \]
+So in order to find a Lagrangian for this system, we must spot a function $\L$ for which the three Lagrange equations give the same result as Newton's second law. To do this, consider the scalar and vector potentials $V(\mbf r, t)$ and $\mbf A(\mbf r, t)$ of the system. We can write the two fields in terms of these potentials as
+\[ \mbf E = -\nabla V - \pdv{\mbf A}{t} \quad\text{and}\quad \mbf B = \nabla \times \mbf A.\]
+With this in mind, I will claim that the Lagrangian function
+\[ \L(\mbf r, \mbf{\dot r}, t) = \frac{1}{2}m\mbf{\dot r}^2 - q(V - \mbf{\dot r}\cdot \mbf A)\]
+has the desired property. The proof of this is not extremely difficult but is a tedious exercise in algebra, so it is left as an exercise. One important fact that this analysis brings is that the generalized momentum is given by
+\[ \mbf p = m\mbf v + q\mbf A\]
+That is, it is the mechanical momentum $m\mbf v$ plus a magnetic term $q\mbf A$. This result is of critical importance for anyone wishing to study electromagnetism.
+\section{Lagrange Multipliers and Constraint Forces}
+Lagrange multipliers are an extremely powerful method that finds applications in several areas of physics. Here, we focus on how it applies to Lagrangian mechanics. 
+
+One of the strengths of Lagrangian mechanics, as we've seen, is that it can bypass the forces of constraint. However, there are situations in which we want to know what these forces are. For instance, a roller coaster designer needs to know the normal force of the track in order to see how strong the track must be. To do this, we will pick a set of generalized coordinates $q_1, \dots, q_n$, except instead of each coordinate being able to be independently varied, they are restricted by a constraint equation
+\[ f(q_1, \dots, q_n) = \text{constant} \]
+In typical Lagrangian mechanics, when considering a simple pendulum we choose $\phi$ for our generalized coordinate, which may be freely varied. Using Lagrange multipliers, however, we may choose $x$ and $y$ as our generalized coordinates, and ensure that they satisfy the constraint equation
+\[ f(x,y) = \sqrt{x^2+y^2} = \ell \]
+To set up this new method, we will first add a slight generalization. Instead of one constraint function $f$, we will have $m$ constraint functions $f_i(q_1, \dots, q_n) = c_i$ for $i = 1, \dots, m$. Now, we can begin from Hamilton's principle; that is, the action integral $S$ is stationary, where
+\[ S = \int_{t_1}^{t_2} \L(q_1, \dots, q_n, \dot q_1, \dots, \dot q_n) \dd t \]
+The variation of $S$ is given by
+\[ \delta S = \int_{t_1}^{t_2} \pqty{\pdv{\L}{q_1}\delta q_1 + \cdots + \pdv{\L}{q_n}\delta q_n + \pdv{\L}{\dot q_1}\delta \dot q_1 + \cdots + \pdv{\L}{\dot q_n}\delta \dot q_n}\]
+Integrating each of the $\delta \dot q_i$ terms by parts gives
+\[ \delta S = \sum_\alpha \int \pqty{\pdv{\L}{q_\alpha} - \dv{t} \pdv{\L}{\dot q_\alpha}}\delta q_\alpha \dd t\]
+if there were no constraints, this would immediately imply $n$ Euler-Lagrange equations, by choosing one $\delta q_i$ to be nonzero while the rest are zero. However, the constraints disallow us from being able to do that. Because any legal point satisfies $f_i(q_1, \dots, q_n) = $constant, the displacement must leave $f_i$ unchanged, implying
+\[ \delta f_i = \sum_\alpha \pdv{f_i}{q_\alpha}\delta q_\alpha = 0 \]
+Since this is zero, we can multiply each $f_i$ with some arbitrary function $\lambda_i(t)$ and then add it to the integrand of $\delta S$, giving
+\begin{align*}
+    \delta S &= \sum_\alpha \int \pqty{\pdv{\L}{q_\alpha} - \dv{t} \pdv{\L}{\dot q_\alpha}}\delta q_\alpha \dd t + \sum_i\sum_\alpha \lambda_i(t)\pdv{f_i}{q_\alpha}\delta q_\alpha \\
+    \delta S &= \sum_{\alpha=1}^n \int_{t_1}^{t_2} \pqty{\pdv{\L}{q_\alpha} + \sum_{i=1}^m\lambda_i(t) \pdv{f_i}{q_\alpha} - \dv{t}\pdv{\L}{\dot q_\alpha}}\, \delta q_\alpha \dd t
+\end{align*}
+Now, since each $\lambda_i(t)$ is an arbitrary function of $t$, we can choose them such that the coefficient of each $\delta q_i$ is zero except for one of them. That is, by choice of $\lambda_i(t)$, we can arrange such that
+\[ \pdv{\L}{q_i} + \sum_i \lambda_i \pdv{f_i}{q_i} = \dv{t}\pdv{\L}{\dot q_i} \]
+for $i = 1, \dots, n$. These $n$ equations, along with the $m$ constraint equations $f_i(q_1, \dots, q_n) = c_i$, form the foundation of the lagrange multipliers method, where we have $m+n$ equations of motion to solve for the $m+n$ variables $q_1, \dots, q_n, \lambda_1, \dots, \lambda_m$.
+
+So far, this Lagrange multiplier is just a mathematical artifact introduced to solve our problem, but we can actually relate it to physical principles as well. For a system following generalized coordinates $q_1, \dots, q_n$, the Lagrangian is
+\[ \L = \frac{1}{2}\sum_\alpha m_\alpha \dot q_\alpha^2 - U(q_1, \dots, q_n)\]
+and the modified Euler-Lagrange equation yields
+\[ m_\alpha \ddot q_\alpha = -\pdv{U}{q_\alpha} + \sum_i \lambda_i \pdv{f_i}{q_\alpha} \]
+Remember that $-\partial U/\partial q_\alpha$ is just the $q_\alpha$ component of the nonconstraint force, and $m_\alpha \ddot q_\alpha$ is the $q_\alpha$ component of the total force. Therefore, We come to the critical realization that
+\[ \sum_i \lambda_i \pdv{f_i}{q_\alpha} = F^\text{cstr}_\alpha \]
+Which allows us to solve for the constraint forces of a system. 
+\begin{example}
+    Consider an atwood machine. Let the generalized coordinates $x$ and $y$ be the vertical distances from the center of the pulley for $m_1$ and $m_2$ respectively. Solve for the motion of the system and find the force of tension $F_T$.
+
+    In terms of the given coordinates, the Lagrangian is
+    \[ \L = \frac{1}{2}m_1 \dot x^2 + \frac{1}{2}m_2 \dot y^2 + m_1gx + m_1gy \]
+    and the constraint equation is $f(x,y) = x + y =$ const, where the constant is determined from the length of the string and the size of the pulley. The modified Euler-Lagrange equations become
+    \begin{align*}
+        m_1g + \lambda &= m_1\ddot x \\
+        m_2g + \lambda &= m_2\ddot y 
+    \end{align*}
+    We can eliminate $\lambda$ to find $m_1\ddot x - m_1g = m_2\ddot y - m_2g$. The constraint equation also tells us $x = -y$, so 
+    \[ (m_1+m_2)\ddot x = (m_1-m_2)g \]
+    or 
+    \[ \ddot x = \frac{(m_1-m_2)g}{m_1+m_2} \quad \text{and}\quad \ddot y = \frac{(m_2-m_1)g}{m_1+m_2} \]
+    We can also solve for $\lambda$ to obtain
+    \[ \lambda = m_1\ddot x - m_1g = \frac{m_1^2g-m_1m_2g - m_1^2g-m_1m_2g}{m_1+m_2} = -\frac{2m_1m_2g}{m_1+m_2}\]
+    The $x$ component of the constraint force $F_T$ is then given by $F_{Tx} = \lambda (\partial f/\partial x) = \lambda$, and the same for the $y$ component. 
+\end{example}

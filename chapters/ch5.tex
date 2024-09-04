@@ -1,0 +1,125 @@
+\chapter{Calculus of Variations}
+In ordinary Calculus, we are often faced with problems of optimization--given some function $f$ defined over the real numbers, we hope to find where $f$ attains a maximum or minimum value. We solve this with the familiar method of taking the first derivative of $f$ and setting it equal to zero to find critical points, and then checking each critical point to see if it is a minimum or maximum (or neither).
+
+We now face a new type of problem. Suppose we have some type of integral that depends on a function that we are free to vary in any way we wish. We wish to find which function should be picked in order to minimize the value of the integral.
+
+We can phrase this problem in equation form as an attempt to find the function $y$ that minimizes the value of
+\begin{equation} \label{action}
+    S = \int_{x_1}^{x_2} f[y(x), y'(x), x] \, \dd x
+\end{equation}
+This equation $S$ is known as a \textit{functional}--it maps from a set of valid functions to a real number, as opposed to a traditional function that maps from a real number to another real number. 
+
+We will also introduce a set of \textit{boundary conditions} $y(x_1) = y_1$ and $y(x_2) = y_2$ for our unknown function, and require that $y(x)$ is twice continuously differentiable (that is, its first and second derivatives are both continuous). 
+
+In general, we also expect $f$ to have continuous partial derivatives with respect to $y$, $y'$, and $x$. 
+
+\subsection*{An Example of a Variational Calculus Problem; Shortest Path Between Two Points}
+Consider two points $(x_1, y_1)$ and $(x_2, y_2)$ in the plane. What is the shortest path between them? Of course, we know this to be a straight line; but to show this result formally, the methods of calculus of variations will be required.
+
+We can rephrase this problem as an integral of the form (\ref{action}) by using the well-known formula from basic calculus 
+\[ L = \int_{x_1}^{x_2} \sqrt{1 + y'(x)^2}\, \dd x \]
+We will soon be able to show that the lowest possible value of $L$ is attained by choosing
+\[ y(x) = \frac{y_2 - y_1}{x_2 - x_1}(x - x_1) + y_1, \]
+the linear path connecting the two points. 
+\section{The Euler-Lagrange Equation}
+To attempt to solve this problem, we will first choose some arbitrary continuously diffrentiable function $\eta(x)$ with $\eta(x_1) = \eta(x_2) = 0$. If we assume that $y(x)$ minimizes the integral (\ref{action}), we can construct a family of incorrect curves as
+\[ \overline y(x) = y(x) + \epsilon \eta(x) \]
+where $\epsilon$ is a parameter that we are free to vary. It is clear that as $\epsilon \to 0$, we must have $\overline y \to y$, so we approach the correct path. The value of the integral with this is
+\begin{align*}
+    S(\epsilon) &= \int_{x_1}^{x_2} f(\overline y, \overline y', x)\dd x \\
+    &= \int_{x_1}^{x_2} f(y + \epsilon \eta, y' + \epsilon \eta', x)\dd x
+\end{align*}
+Critically, we have rephrased our problem from being about minimizing an entire integral to simply meeting one requirement--that is, when $\epsilon = 0$, $S$ is minimized. In other words,
+\[ \dv{S}{\epsilon}\biggr|_{\epsilon = 0} = 0\]
+To evaluate this derivative, the Leibniz integral rule must be applied. Recall that the Leibniz integral rule states
+\[ \dv{x} \int_a^b f(x, y)\dd y = \int_a^b \pdv{x} f(x,y)\dd y\]
+as long as $a$ and $b$ are independent of $x$. Additionally, the chain rule allows us to write
+\[ \pdv{f}{\epsilon} = \pdv{f}{\overline y}\pdv{\overline y}{\epsilon} + \pdv{f}{\overline y'}\pdv{\overline y'}{\epsilon} + \pdv{f}{x}\pdv{x}{\epsilon}\]
+$x$ is indepedent of $\epsilon$, so the third term goes to zero. Additionally, from how we defined $\overline y$, we can see that
+\[ \pdv{\overline y}{\epsilon} = \eta \quad \pdv{\overline y'}{\epsilon} = \eta '\]
+so
+\[ \pdv{f}{\epsilon} = \pdv{f}{\overline y}\eta + \pdv{f}{\overline y'}\eta '\]
+Plugging this into the integral,
+\begin{align*}
+    \dv{S}{\epsilon} &= \int_{x_1}^{x_2} \pqty{\pdv{f}{\overline y}\eta + \pdv{f}{\overline y'}\eta '} \, \dd x
+\end{align*}
+Using integration by parts on the second term, we can find that
+\begin{align*}
+    \dv{S}{\epsilon} &= \int_{x_1}^{x_2} \pqty{\pdv{f}{\overline y}\eta - \eta \dv{x}\pdv{f}{\overline y'}} \, \dd x\\
+    &= \int_{x_1}^{x_2} \eta \pqty{\pdv{f}{\overline y} - \dv{x} \pdv{f}{\overline y'}}\, \dd x
+\end{align*}
+where the boundary terms from integration by parts vanish due to the condition $\eta(x_1) = \eta(x_2) = 0$. When $\epsilon = 0$, $\overline y = y$, and the integral becomes
+\[ \dv{S}{\epsilon}\biggr|_{\epsilon = 0} = \int_{x_1}^{x_2} \pqty{\pdv{f}{y} - \dv{x} \pdv{f}{y'}}\eta \, \dd x = 0\]
+Because this must be satisfied for \textit{every} arbitrary function $\eta$ that satisfies the boundary and continuity conditions, we must have
+\begin{align} \label{euler-lagrange}
+    \pdv{f}{y} - \dv{x}\pdv{f}{y'} = 0
+\end{align}
+when $x$ is between $x_1$ and $x_2$. The proof that the integral being zero requires the integrand to be zero everywhere is relatively easy, but I will skip it nonetheless. 
+
+(\ref{euler-lagrange}) is known as the \textit{Euler-Lagrange Equation}, and any function $y$ that satisfies it ensures that $\dd S/\dd \epsilon$ is zero at $\epsilon = 0$. 
+\subsection*{Shortest Path Between two Points}
+We will now return to the problem of the shortest path between two points. Recall that wede found the length of a path $y = y(x)$ to be given by the integral
+\[ L = \int_{x_1}^{x_2}\sqrt{1 + y'(x)^2}\, \dd x \]
+The partials of the integrand are given by
+\[ \pdv{y} \sqrt{1+y'(x)^2} = 0 \quad\quad \pdv{y'}\sqrt{1+y'(x)^2} = \frac{2y'(x)}{\sqrt{1+y'(x)^2}} \]
+so the Euler-Lagrange equation states
+\[ \dv{x} \frac{2y'(x)}{\sqrt{1+y'(x)^2}} = 0\]
+or, in other words, $y'(x)/(1+y'(x)^2)^{1/2}$ is constant. This tells us
+\[ y'(x)^2 = C(1+y'(x)^2)\]
+for some positive constant $C$. This can be rearranged to
+\[ y'(x)^2 = \frac{C}{1-C} = \text{constant} \]
+since the slope is constant, $y$ is a linear function of $x$, as expected. 
+
+This was a basic example, but we will see in the next section how the principles of variational calculus apply to more advanced physical problems.
+\begin{example}[The Brachstochrone]
+    Suppose we have two points $(x_1, y_1)$ and $(x_2, y_2)$, with $y_1 > y_2$. If we want to build a frictionless track such that dropping a cart at point $1$ causes it to reach point $2$ in the shortest time, what shape should the track be?
+
+    This is a variational calculus problem, and it tasks us with minimizing the integral 
+    \[ T = \int_{1}^{2} \frac{\dd s}{v} \]
+    using the conservation of energy allows us to see that the speed as a function of the height is $v = \sqrt{2g(y_1 - y)}$. If we move our coordinate system such that $y_1 = 0$ and $y_2 = y_f$, we have $v = \sqrt{2gy}$ and
+    \begin{align*}
+         T &= \int_{0}^{y_f} \sqrt{\frac{1 + x'(y)^2}{2gy}}\, \dd y \\
+         &= \frac{1}{\sqrt{2g}}\int_0^{y_f} \frac{\sqrt{x'(y)^2 + 1}}{\sqrt y}\, \dd y
+    \end{align*}
+    The partials of this integrand give us
+    \[ \pdv{x} \frac{\sqrt{x'(y)^2 + 1}}{\sqrt y} = 0\]
+    and 
+    \[ \pdv{x'} \frac{\sqrt{x'(y)^2  +1 }}{\sqrt{y}} = \frac{x'(y)}{\sqrt{y(x'(y)^2+1)}}\]
+    the fact that $\partial f/\partial x$ is zero tells us that this is constant. We will square this for convenience to obtain
+    \[ \frac{x'^2}{y(x'^2+1)} = C\]
+    solving this for $x'$, we find
+    \[ x'(y) = \sqrt{\frac{Cy}{1-Cy}} = \sqrt{\frac{y}{2a - y}}\]
+    where $a = 1/2C$. We chose this form for convenience in the integration, which requires the substitution
+    \[ y = a(1- \cos\theta)\]
+    to evaluate. This gives 
+    \[ x = a\int (1 - \cos\theta)\dd \theta = \theta - \sin\theta + \textit{const.} \]
+    In other words, the final parametric equations for the path are
+    \[ (x, y) = (\theta - \sin\theta + x_1, a(1-\cos\theta)) \]
+    where $a$ is a constant to be determined in order to ensure that when $x = x_2$, $y = y_f$. 
+\end{example}
+\subsection*{Maximum and Minimum vs. Stationary}
+You may have noticed that the Euler-Lagrange Equation only ensures that the integral of interest is at a stationary point--not necessarily a minimum. In some cases, such as the distance between two points, it is quite clear that the given result is a minimum. Other times, however, such as the Brachstochrone problem, it may be difficult to tell if this path is actually a minimum or not. 
+
+In general, it is quite complicated to check what type of stationary point a given path is analogous to. Luckily for us, however, this won't be necessary in any of the further applications of variational calculus in this text. We find that all applications in mechanics only require a path that makes the given integral \textit{stationary}, not necessarily minimized. 
+\section{Multiple Variables}
+So far we have only considered problems where there are two variables--the independent variable (usually $x$), and the dependent variable (usually $y$). For problems where there are more variables that interact in more complex ways, we must adjust our theory somewhat.
+
+Suppose we have two points $\mbf{r}_1$ and $\mbf{r}_2$ in $\R^n$. We wish to find the path $C$ that connects $\mbf{r}_1$, $\mbf{r}_2$ such that
+\[ S = \int_C f(\mbf r) \, \dd s\]
+is stationary. If the correct path can be parameterized as $\mbf r = \mbf r(t)$ with $t_1 \leq t \leq t_2$, then we can give a family of incorrect paths as $\overline{\mbf r} = \mbf r + \boldsymbol \epsilon\cdot  \boldsymbol\xi$ where $\boldsymbol\xi(t_1)=\boldsymbol\xi(t_2)=\mbf 0$. As $\epsilon \to 0$, each of its components goes to zero so we obtain $n$ distinct equations
+\[ \overline r_i = r_i + \epsilon_i \xi_i \]
+for $i = 1, \dots, n$. So the requirement $\delta S = 0$ can be rephrased as
+\[ \pdv{S}{\epsilon_i} = 0\]
+when $\boldsymbol \epsilon = \mbf 0$. Following the exact same process as previously, we obtain $n$ Euler-Lagrange equations, each requiring
+\[ \pdv{f}{x_i} = \dv{t} \pdv{f}{x'_i}\]
+The fact that the Euler-Lagrange equation looks quite similar in multiple dimensions is one of the main draws of using it to solve mechanical problems--it generalizes very well to different coordinate systems without much complication. 
+
+To emphasize that we are not constrained to a single type of coordinate system, I will lay out the Lagrangian formulation of mechanics through so-called ``generalized coordinates." These are any set of $n$ (typically) independent variables that fully and uniquely describe the configuration of a system, and are generally denoted $q_1, \dots, q_n$. These $n$ coordinates can be thought of as defining a location in \textit{configuration space}, a space where each point comprises a unique configuration (hence the name) for the system. 
+
+The integral $S$ whose stationary value determines the evolution of the system is called the action integral. Its integrand is the Lagrangian $\mcl{L}$ that is dependent on the $n$ generalized coordinates and their derivatives, as well as time,
+\[ \mcl{L} = \mcl L(q_1, \dot q_1, \dots, q_n, \dot q_n, t) \]
+Then, the requirement that the action integral 
+\[ S = \int_{t_1}^{t_2}\mcl L(q_1, \dot q_1, \dots, q_n, \dot q_n, t)\, \dd t \]
+is stationary implies the $n$ Euler-Lagrange equations
+\[ \pdv{\L }{q_i} = \dv{t} \pdv{\L}{\dot q_i}\]
+for $i = 1, \dots, n$. We will see in the next chapter where these equations come from and how we can use them. 
