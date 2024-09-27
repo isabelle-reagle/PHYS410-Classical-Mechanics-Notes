@@ -1,0 +1,186 @@
+\chapter{Rotational Motion of Rigid Bodies}
+A rigid body is a collection of $N$ bodies with the property that its shape cannot change. A perfectly rigid body is, of course, an approximation. But it is an approximation that is often extremely applicable. 
+
+If we wished to track the positions of every particle separately, we would have $3N$ generalized coordinates. However, the rigid-body nature reduces this number all the way to six--the three coordinates of the center of mass and the three numbers to specify the orientation of the body.
+
+We will also see that the problem of tracking the motion of a rigid body can be reduced into two separate problems--tracking the center of mass and tracking the orientation. These problems will heavily use the results of Chapter 7, most of which generalize extremely well to $N$ particles.
+\section{Properties of the Center of Mass}
+Consider a set of $N$ particles with positions $\mbf r_i$ and masses $m_i$. Then, the center of mass is defined by
+\[ \mbf R = \frac{1}{M}\int \mbf r \, \dd m\]
+\subsection*{Total Momentum and the Center of Mass}
+Recall that the total momentum of the $N$ particle system is given by $\mbf P = M\mbf{\dot R}$, and $\mbf{\dot P} = \mbf F^\text{ext} = M\mbf{\ddot R}$.
+\subsection*{Total Angular Momentum}
+The position of a particle with respect to an origin $O$ can be given by the position of the center of mass plus the position of the particle relative to the center of mass,
+\[ \mbf r_i = \mbf R + \mbf r'_i\]
+The total angular momentum about the origin $O$ is 
+\begin{align*}
+    \mbf L = \sum_i \mbf r_i\times \mbf m_i\mbf{\dot r}_i
+\end{align*}
+If we rewrite $\mbf r_i = \mbf R + \mbf r'_i$ and $\mbf{\dot r}_i = \mbf{\dot R} + \mbf{\dot r}'_i$, so
+\begin{align*}
+    \mbf L &= \sum_i (\mbf R + \mbf r_i') \times m(\mbf{\dot R} + \mbf{\dot r}_i') \\
+    &= \sum_i (\mbf R \times m_i\mbf{\dot R}) + \sum_i(\mbf R \times m_i\mbf{\dot r}_i') + \sum_i(\mbf r_i'\times m_i\mbf R) + \sum_i(\mbf r_i' \times m_i\mbf{\dot r}_i') \\
+    &= \mbf R\times M\mbf{\dot R} + \mbf R \times \sum_i m_i\mbf{\dot r}_i' + \pqty{\sum_i m_i\mbf r_i'}\times \mbf{\dot R} + \sum_i(\mbf r_i' \times m_i\mbf{\dot r}_i') 
+\end{align*}
+Notice the sum in the parenthesis is the position of the center of mass relative to the center of mass, which is    simply just zero. We can also differentiate this term to see that the term immediately to its left is also zero, giving
+\[ \mbf L = \mbf R\times \mbf P +\sum_i(\mbf r_i' \times m_i\mbf{\dot r}_i')  \]
+In other words
+\[ \mbf L \text{(total)} = \mbf L_\text{CM}\text{(motion of CM)} + \mbf L_\text{rel}\text{(motion relative to CM)}\]
+For instance, the angular momentum of earth is equal to the angular momentum of the orbit of the earth $\mbf L_\text{orb}$ plus the angular momentum of the spin of the earth $\mbf L_\text{spin}$. Also note
+\begin{align*}
+    \mbf{\dot L}_\text{orb} &= \mbf{\dot R}\times \mbf P + \mbf R \times \mbf{\dot P} = \mbf R \times \mbf{F}^\text{ext}
+\end{align*}
+Because the first cross product is zero and $\mbf{\dot P} = \mbf F^\text{ext}$. If the force of the sun on the earth is perfectly central, $\mbf F^\text{ext}$ is parallel with $\mbf R$ and so $\mbf L_\text{orb}$ is constant.
+
+Additionally, note $\mbf L_\text{spin} = \mbf L - \mbf L_\text{orb}$, and $\mbf{\dot L} = \bsm\Gamma^\text{ext}$. So,
+\begin{align*}
+    \mbf{\dot L}_\text{spin} &= \mbf{\dot L} - \mbf{\dot L}_\text{orb} \\
+    &= \sum_i \mbf r_i \times \mbf F^\text{ext}_i - \mbf R \times \mbf F^\text{ext} \\
+    &= \mbf R \times \mbf F^\text{ext} + \sum_i \mbf r_i' \times \mbf F^\text{ext}_i \\
+    &= \mbf\Gamma^\text{ext}\text{(about CM)}
+\end{align*}
+That is, the rate of change of the angular momentum about the CM is the torque about the CM. This is a natural-seeming result, so we have previously used it without proof in introductory physics.
+\subsection*{Kinetic Energy}
+The kinetic energy of the $N$ particles is given by
+\begin{align*}
+    T &= \sum_i\frac{1}{2}m_i\mbf{\dot r}_i\cdot \mbf{\dot r}_i \\
+    &= \frac{1}{2}\sum_i m_i (\mbf{\dot R} + \mbf{\dot r}_i') \cdot (\mbf{\dot R} + \mbf{\dot r}_i') \\
+    &= \frac{1}{2}\sum_i m_i\bqty{\pqty{\mbf{\dot R} \cdot \mbf{\dot R}} + 2\pqty{\mbf{\dot R} \cdot \mbf{\dot r}_i'} + \pqty{\mbf{\dot r}_i'\cdot\mbf{\dot r}_i'} } \\
+    &= \frac{1}{2}M\mbf{\dot R}^2 + \frac{1}{2}\sum_i m_i\mbf{r}_i'^2
+\end{align*}
+That is,
+\[ T \text{(total)} = T_\text{CM}\text{(motion of CM)} + T  _\text{rel}\text{(motion relative to CM)}\]
+for a rigid body, the only possible motion relative to the CM is rotation, so
+\[ T \text{(total)} = T_\text{CM}\text{(motion of CM)} + T  _\text{rel}\text{(rotation about CM)}\]
+This is a familiar result from introductory physics.
+
+Another alternative and sometimes useful way to phrase this result is by choosing $\mbf R$ in a different way. None of our calculations require $\mbf R$ to be the center of mass (it just seemed like a natural place to start). So if, for instance, we chose $\mbf R$ to be some point that is at rest, even if only instantaneously, then $T = T_\text{rel}$(motion relative to $\mbf R$).
+\subsection*{Potential Energy}
+If all of the forces on the $N$-particle rigid body are conservative, then we can write the total potential energy as
+\[ U = U^\text{int} + U^\text{ext} \]
+as we found previously. The internal potential energy is the sum of each potential energy from the interparticle forces,
+\[ U^\text{int} = \sum_i \sum_{j<i} U^\text{int}_{ij}\]
+each of these internal forces depend only on the magnitude of the distance $\abs{\mbf r_i - \mbf r_j}$, which in a rigid body is constant. Thus, the internal potential energy is constant and we can ignore it.
+
+In other words, when discussion the motion of a rigid body we only have to consider the external forces and their corresponding potential energies.
+\section{Rotation About a Fixed Axis}
+We already understand the translational term of the kinetic energy quite well, so for the remainder of the chapter we will focus on rotation. We can start with the special case of a body rotating about a fixed axis, such as a piece of wood spinning about a fixed rod.
+
+Since that axis of rotation is fixed, we'll just call it the $z$ axis. Then,
+\[ \mbf L = \sum_i \bsm \ell_i = \sum_i \mbf r_i \times m_i\mbf{\dot r}_i\]
+where each $\mbf{\dot r}_i$ is the velocity of the object from its rotation. The angular velocity vector of the object is $\bsm\omega = (0,0,\omega)$ and $\mbf r_i = (x_i,y_i,z_i)$. Thus $\mbf{\dot r}_i = \bsm\omega \times\mbf r_i$ has components
+\begin{align*}
+    \mbf{\dot r}_i &= (-\omega y_i, \omega x_i, 0)
+\end{align*}
+and finally
+\begin{align*}
+    \bsm\ell_i = \mbf r_i \times m_i\mbf{\dot r_i} &= m_i\omega (-x_iz_i, -y_iz_i,x_i^2+y_i^2)
+\end{align*}
+Now, we can calculate the total angular momentum, starting with the $z$ component:
+\begin{align*}
+    L_z &= \sum_i m_i(x_i^2+y_i^2)\omega
+\end{align*}
+We can define the quantity $x_i^2+y_i^2=\rho_i^2$, where $\rho$ represents the distance from the $z$ axis, so $L_z = \sum_i m_i\rho_i^2\omega$. Defining the quantity $I_z = \sum_i m_i\rho_i^2$ gives $L_z = I_z\omega$. This quantity is the familiar moment of inertia about the $z$ axis.
+
+This is a gratifying result, allowing us to easily calculate the kinetic energy of the rotating body to be
+\begin{align*}
+    T &= \frac{1}{2}\sum_i m_i\mbf{\dot r}_i^2 \\
+    &= \frac{1}{2}\sum_i m_i (\rho \omega)^2 = \frac{1}{2}I_z\omega^2
+\end{align*}
+But we can also calculate the angular momentum about the $x$ and $y$ axes, giving
+\[ L_x = -\sum_i m_ix_iz_i \omega \quad\text{and}\quad L_y = -\sum_i m_iy_iz_i\omega \]
+We shall see that these sums are not generally zero, giving the following surprising conclusion: even though the angular velocity is purely in the $z$ direction, the angular momentum may be in a completely different direction; that is, the relation $\mbf L = I_z\bsm \omega$ from introductory physics is generally \textit{not true}! 
+\subsection*{The Products of Inertia}
+We can define the quantities $I_{xz} = -\sum_i m_ix_iz_i$ and $I_{yz} = -\sum_i m_iy_iz_i$ (the subscripts come from the factors in the sum), which then gives $L_x = I_{xz}\omega$ and $L_y = I_{yz}\omega$. With this new notation, we rename $I_z$ to become instead $I_{zz}$. With this notation, the angular momentum for a body rotating about the $z$ axis is
+\[ \mbf L = (I_{xz}\omega, I_{yz}\omega, I_{zz}\omega)\]
+\section{Rotation about Any Axis; the Inertia Tensor}
+There are cases where we can not consider the rotation to be about some fixed $z$ axis, as we will explore later. This usually occurs because the axis is changing with time. In this section, we will explore rotation about some fixed, arbitrary axis.
+\subsection*{Angular Momentum for an Arbitrary Angular Velocity}
+Consider a rigid body rotating about an arbitrary axis with angular velocity
+\[ \bsm \omega = (\omega_x, \omega_y, \omega_z)\]
+Before we continue, note that there two important cases to keep in mind; first is when the rotation is solely about one fixed point (which doesn't move). Then, the magnitude and direction of $\bsm\omega$ is allowed to change, but the rotation will always be about the fixed point, which we take to be the origin.
+
+In other cases, there is no fixed point (consider a ball flying through the air, for example). In these cases, we can analyze the motion in terms of the motion of the CM and the rotation about the CM. In this case, we take the CM to be the origin and analyze the motion about it.
+
+With these examples in mind, compute the body's angular momentum
+\begin{align*}
+    \mbf L &= \sum_i m_i \mbf r_i \times \mbf{\dot r}_i \\
+    &= \sum_i m_i \mbf r_i \times (\bsm \omega \times \mbf r_i) 
+\end{align*}
+If $\mbf r = (x,y,z)$, a tedious calculation yields
+\begin{align*}
+    \mbf r_i \times(\bsm\omega \times \mbf r_i) &= ((y_i^2+z_i^2)\omega_x-xy\omega_y -xz\omega_z, \\
+    &-yx\omega_x + (z^2+x^2)\omega_y -yz\omega_z \\
+    &-zx\omega_x - zy\omega_y + (x^2+y^2)\omega_z)
+\end{align*}
+Which gives us the three components for angular momentum:
+\begin{align*}
+    L_x &= I_{xx}\omega_x + I_{xy}\omega_y + I_\text{xz}\omega _z \\
+    L_y &= I_{yx}\omega_x + I_{yy}\omega_y + I_{yz}\omega_z \\
+    L_z &= I_{zx}\omega_x + I_{zy}\omega_y + I_{zz}\omega_z
+\end{align*}
+In matrix form, this yields
+\[ \begin{pmatrix}
+    L_x \\ L_y \\ L_z
+\end{pmatrix} = \begin{pmatrix}
+    I_{xx} & I_{xy} & I_{xz} \\
+    I_{yx} & I_{yy} & I_{yz} \\
+    I_{zx} & I_{zy} & I_{zz}
+\end{pmatrix}\begin{pmatrix}
+    \omega_x\\ \omega_y \\ \omega_z
+\end{pmatrix}\]
+So $\mbf L = \mbf I \bsm\omega$.
+
+Here, we defined $I_{xx} = \sum_i m_i(y_i^2+z_i^2)$ with similar definitions for $I_{yy}$ and $I_{zz}$, and $I_{xy} = -\sum_i m_i x_iy_i$ with similar definitions for the other cross components. Also worth noting is that the inertia tensor is \textit{symmetric}, so $I_{xy} = I_{yx}$. 
+\begin{example}[Inertia Tensor for a Solid Cube]
+    Find the moment of inertia tensor for a uniform solid cube of mass $M$ and sidelength $a$ rotating about
+    \begin{enumerate}
+        \item A corner
+        \item Its center
+    \end{enumerate}
+    For both cases, find the angular momentum when the axis of rotation is parallel to $\xhat$ and when the axis of rotation is parallel to $(1,1,1)$.
+
+    To begin, we will start by noting the symmetry of the situation. About the corner, the diagonal elements of the inertia tensor are given by
+    \begin{align*}
+        I_{xx} &= \iiint \limits_{\text{cube}} \dd V \rho (y^2+z^2) \\
+        &= \int_0^a\dd x \int_0^a\dd y \int_0^a\dd z \rho(y^2+z^2) \\
+        I_{yy} &= \int_0^a\dd x \int_0^a\dd y \int_0^a\dd z \rho(x^2+z^2) \\
+        I_{zz} &= \int_0^a\dd x \int_0^a\dd y \int_0^a\dd z \rho(x^2+y^2)
+    \end{align*}
+    It's easy to see that these three integrals are identical (a simple renaming of variables can be used to show this), so $I_{xx} = I_{yy} = I_{zz}$. So, computing any of them effectively computes all three. We'll arbitrarily choose to compute $I_{xx}$. 
+    \begin{align*}
+        I_{xx} &= \int_0^a\dd x \int_0^a\dd y \int_0^a\dd z \rho(y^2+z^2) \\
+        &= \rho \pqty{\int_0^a\dd x}\pqty{\int_0^ay^2\dd y}\pqty{\int_0^a \dd z} + \rho \pqty{\int_0^a\dd x}\pqty{\int_0^a\dd u}\pqty{\int_0^a z^2\dd z} \\
+        &= \frac{2}{3}\rho a^5 = \frac{2}{3}Ma^2
+    \end{align*}
+    For the off-diagonal elements, a similar analysis tells us that all three of    them are equal (remember that the inertia tensor is symmetric so we only need to consider either the upper triangular or lower triangular elements). So, arbitrarily choosing to evaluate $I_{xy}$,
+    \begin{align*}
+        I_{xy} &= -\iiint\limits_\text{cube} \dd V\rho xy \\
+        &= -\rho \pqty{\int_0^a x\dd x}\pqty{\int_0^a y\dd y}\pqty{\int_0^a \dd z} \\
+        &= -\frac{1}{4}\rho a^5 = -\frac{1}{4}Ma^2 
+    \end{align*}
+    We have now found every element, so the inertia tensor is   
+    \begin{align*}
+        \mbf I_\text{corner} &= \frac{1}{12}Ma^2\begin{pmatrix}
+            8 & -3 & -3 \\
+            -3 & 8 & -3 \\
+            -3 & -3 & 8
+        \end{pmatrix}
+    \end{align*}
+    The angular momentum of an object rotating with angular velocity $\bsm\omega_1 = (\omega, 0 ,0)$ is 
+    \[ \mbf L_1 = \mbf I_\text{corner}\bsm \omega_1 = \frac{1}{12}Ma^2 \omega\begin{pmatrix}
+        8 \\ -3 \\ -3
+    \end{pmatrix}\]
+    And the angular momentum of an object rotating with angular velocity $\bsm \omega_2 = (\omega, \omega, \omega)$ is 
+    \begin{align*}
+        \mbf L_2 = \mbf I_\text{corner}\bsm \omega_2 &= \frac{1}{12}Ma^2\omega \begin{pmatrix}
+                2 \\ 2\\ 2
+        \end{pmatrix} = \frac{1}{6}Ma^2\bsm \omega
+    \end{align*}
+    Now, for the inertia tensor about the middle, we can write
+    \begin{align*}
+        I_{xx} &= \int_{-a/2}^{a/2} \dd x \int_{-a/2}^{a/2}\dd y \int_{-a/2}^{a/2} \dd z \rho(y^2+z^2) \\
+        I_{yy} &= \int_{-a/2}^{a/2} \dd x \int_{-a/2}^{a/2}\dd y \int_{-a/2}^{a/2} \dd z \rho(x^2+z^2)
+    \end{align*}
+    Once again by symmetry, all three of these are equal.
+\end{example}

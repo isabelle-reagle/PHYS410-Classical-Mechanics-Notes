@@ -1,0 +1,293 @@
+\chapter{Mechanics in Noninertial Frames}
+We previously saw that Newton's laws are only valid in the special class of reference frames known as \textit{inertial frames}--frames that are neither accelerating nor rotating. We sometimes wish to describe the motion of an object relative to a non-inertial frame of reference, which is the focus of this chapter.
+\section{Acceleration Without Rotation}
+Consider an inertial frame $\mathcal S_0$ and a second frame $\mathcal S$ that is accelerating relative to $\mathcal S_0$ with acceleration $\mbf{A}(t)$. $\mcl S$ could be a frame fixed in a railroad car moving with velocity $\mbf V$ relative to the ground, and acceleration $\mbf A = \mbf{\dot V}$. Because $\mcl S_0$ is inertial, we know that Newton's Second Law holds and so
+\[ m\mbf{\ddot r}_0 = \mbf F\]
+where $\mbf r_0$ is the ball's position relative to $\mcl S_0$ and $\mbf F$ is the net force on the ball. 
+
+Now consider the same ball's motion as measured relative to the accelerating frame $\mcl S$. The ball's position relative to $\mcl S$ is $\mbf r$, and its velocity is given by the velocity addition formula:
+\[ \mbf{\dot r}_0 = \mbf{\dot r} + \mbf V\]
+Although this formula breaks down when near lightspeed, it is more than suitable for Classical Mechanics. Differentiating and rearranging, we find that
+\[ \mbf{\ddot r} = \mbf{\ddot r}_0 - \mbf A\]
+or
+\begin{align*}
+m\mbf{\ddot r} &= m\mbf{\ddot r}_0 - m\mbf A \\
+&= \mbf F - m\mbf A
+\end{align*}
+This equation has the exact form of Newton's Second law, except that in addition to $\mbf F$, there is an extra term. This means that we are allowed to use Newton's Second Law in the noninertial frame $\mcl S$ provided that we add this extra $-m\mbf A$ term, often called the \textbf{inertial force}:
+\[ \mbf F_\text{inertial} = -m\mbf A\]
+For instance, if you are in a car accelerating in the $+\xhat$ direction, you feel an inertial force in the $-\xhat$ direction, pushing you back into your car seat. If you are in a turning car, the inertial force is the so-called ``centrifugal force" that pushes radially outwards. 
+\begin{example}[A Pendulum in an Accelerating Car]
+    Consider a simple pendulum with mass $m$ and length $L$ mounted inside a railroad car that is accelerating to the right with constant acceleration $\mbf A$. Find the angle $\phi_\text{eq}$ at which the pendulum remains at rest relative to the car, and find the frequency of small oscillations about the equilibrium angle.
+
+    From an inertial frame, there are only two forces acting on the bob--gravity and tension, so
+    \[ m\mbf{\ddot r}_0 = \mbf T + m\mbf g\]
+    which tells us that relative to the noninertial frame, we have
+    \begin{align*}
+        m\mbf{\ddot r} &= \mbf T + m\mbf g - m\mbf A \\
+        &= \mbf T + m(\mbf g - \mbf A) \\
+        &= \mbf T + m\mbf g_\text{eff}
+    \end{align*}
+    where $\mbf g_\text{eff} = \mbf g-\mbf A$. We see that the equation of motion of the pendulum in the accelerating frame is exactly the same as in an inertial frame, except that $\mbf g$ is replaced by an effective $\mbf g_\text{eff} = \mbf g -\mbf A$. ThereforeG, for the pendulum to remain at rest, $\mbf T$ must be pointing in exactly the opposite direction as $\mbf g_\text{eff}$. This means that $\tan\phi_\text{eq} = A/g$, so
+    \[ \phi_\text{eq} = \arctan(A/g)\]
+    The small angle frequency of a pendulum in an inertial frame is well known to be $\omega = \sqrt{g/L}$, and we can obtain a similar result in the noninertial frame by replacing $g$ with $g_\text{eff} = \sqrt{A^2+g^2}$, so
+    \[ \omega = \sqrt{\frac{g_\text{eff}}{L}} = \sqrt{\frac{\sqrt{g^2+A^2}}{L}}\]
+\end{example}
+\section{The Tides}
+One application of our exploration of accelerating frames is the explanation of the tides. The tides come as a result of bulges in the oceans caused by the gravitational attraction of the moon and the sun. It turns out that these effects are primarily caused by the moon, so we will ignore the effects of the sun for now. We will also assume that the oceans cover the entire globe.
+
+A plausible-sounding, though incorrect, explanation of the tides is that the moon's attraction pulls the tides towards it, producing a single bulge towards the moon. This would only account for one high tide per day, however, and we have observed there to be two.
+
+The correct explanation is somewhat more complicated. The gravitational effect of the moon gives the entire earth, including the oceans, an acceleration $\mbf A$ pointing towards it. However, the acceleration is slightly larger on the side of the earth close to the moon than it is at the center of the earth, causing it to bulge relative to the earth. Similarly, on the far side, the acceleration is slightly smaller, making a smaller acceleration and causing the water to bulge slightly relative to the earth.
+
+To make this argument quantitative, the three forces on any mass $m$ on the surface of the Earth are \textbf{(1)} the gravitational pull $m\mbf g$ of the Earth, \textbf{(2)} the gravitational pull $-(GmM_m/d^2)\mbf{\hat d}$ of the moon, and \textbf{(3)} the net non-gravitational force $\mbf{F}_\text{ng}$.
+
+Meanwhile, the acceleration of the Earth is $\mbf A = -(GM_m/d_0^2)\mbf{\hat d}_0$. Putting these together, Newton's Second law tells us
+\begin{align*}
+     m\mbf{\ddot r} &= \mbf F - m\mbf A \\
+     &= \pqty{m\mbf g - \frac{GmM_m}{d^2}\mbf{\hat d} + \mbf{F}_\text{ng}} + \frac{GmM_m}{d_0^2}\mbf{\hat d}_0 \\
+     &= m\mbf g + \mbf F_\text{ng} - GmM_m\pqty{\frac{\mbf{\hat d}}{d^2}-\frac{\mbf{\hat d}_0}{d_0^2}} \\
+     &= m\mbf g + \mbf F_\text{ng} + \mbf F_\text{tid}
+\end{align*}
+Where we have defined the \textbf{tidal force} $\mbf F_\text{tid}$ as 
+\[ \mbf F_\text{tid} = - GmM_m\pqty{\frac{\mbf{\hat d}}{d^2}-\frac{\mbf{\hat d}_0}{d_0^2}} \]
+the difference between the force on actual force of the moon on $m$ and the force if $m$ were to be at the center of the earth. At the point closest to the moon, $\mbf{\hat d} = \mbf{\hat d}_0$, and since $d < d_0$, the tidal force points in the $\mbf{\hat d}$ direction, or towards the moon. A similar analysis tells us that at the furthest point from the moon, the tidal force points away from the moon. 
+
+\subsection*{Magnitude of the Tides}
+The easiest way to find the height difference between the high tide and low tide is by observing that the surface of the ocean is an equipotential surface (take a second to justify this fact to yourself). Now, since both $m\mbf g$ and $\mbf F_\text{tid}$ are conservative (we are assuming that $\mbf F_\text{ng} = \mbf 0$), we can write each of them as the gradient of a potential energy
+\[ m\mbf g = -\nabla U_\text{eg} \quad\text{and}\quad\ \mbf F_\text{tid} = -\nabla U_\text{tid} \]
+We know that $U_\text{eg}$ is the potential energy due to the earth's gravity and that $U_\text{tid}$ is the potential energy due to the tidal force. By inspection, we can see that
+\[ U_\text{tid} = -GM_mm\pqty{\frac{1}{d} + \frac{x}{d_0^2}} \]
+Because the surface is equipotential, we know that $U_\text{eg} + U_\text{tid}$ must be constant along it, or for a point $P$ at high tide and $R$ at low tide,
+\[ U_\text{eg}(P) - U_\text{eg}(Q) = U_\text{tid}(Q) - U_\text{tid}(P)\]
+the left side is just $U_\text{eg}(P) - U_\text{eg}(Q) = mgh$, where $h$ is the height of the tides. To evaluate the right side, we can just plug in. At point $Q$, $d = \sqrt{d_0^2+r^2} \approx \sqrt{d_0^2+R_E^2}$ and $x=0$. Therefore, we find
+\[ U_\text{tid}(Q) = -\frac{GmM_m}{\sqrt{d_0^2+R_E^2}} = -\frac{GmM_m}{d_0\sqrt{1+(R_E^2/d_0^2)}}\]
+Because $R_E/d_0 \ll 1$, we can use the binomial approximation $(1+x)^{-1/2} \approx 1-\frac{1}{2}x$ to write
+\begin{align*}
+    U_\text{tid}(Q) &\approx -\frac{GmM_m}{d_0}\pqty{1-\frac{R_E^2}{2d_0^2}} 
+\end{align*}
+At point $P$, we have $d = d_0-r \approx d_0-R_E$ and $x=-r \approx -R_E$, so we have
+\begin{align*}
+    U_\text{tid}(P) &= -GmM_m \pqty{\frac{1}{d_0-R_E} - \frac{R_E}{d_0^2}} \\
+    &= -\frac{GmM_m}{d_0}\pqty{\frac{1}{1-R_E/d_0} - \frac{R_E}{d_0}} \\
+    &\approx -\frac{GmM_m}{d_0}\pqty{\bqty{1+\frac{R_E}{d_0} + \frac{R_E^2}{d_0^2}}-\frac{R_E}{d_0}} \\
+    &= -\frac{GmM_m}{d_0}\pqty{1+\frac{R_E^2}{d_0^2}}
+\end{align*}
+Computing their difference,
+\begin{align*}
+    U_\text{tid}(Q)-U_\text{tid}(P) &= -\frac{GmM_m}{d_0}\pqty{1-\frac{R_E^2}{2d_0^2}-1-\frac{R_E^2}{d_0^2}} \\
+    &= \frac{GmM_m}{d_0}\frac{3R_E^2}{2d_0^2}
+\end{align*}
+so $mgh = (GmM_m/d_0)(3R_E^2/2d_0^2)$. Recalling that $g = GM_E/R_E^2$, we have
+\[ h = \frac{3M_mR_E^4}{2M_Ed_0^3}\]
+Plugging in numbers, we get $h = 54$ cm. This tells us that the vertical difference between high and low tides is roughly 54cm. Remember that this is just the effect from the moon. The height of the tides from the sun is given by the same formula, but with $M_m$ swapped for $M_S$ and $d_0$ replaced by the distance from the sun to the earth. This gives a new value of $h=25$ cm. 
+
+While the effect on the tides from the sun is less than the moon's, it is certainly not negligible. To illustrate this fact, consider a time where the sun, earth, and moon are nearly exactly in line with each other. This means that both the sun and moon are applying tides in the same locations. Thus, they add directly and the height of the tides becomes $25+54=79$ cm. These are known as \textit{spring tides}. If the sun is causing high tides in the location where the moon causes low tides, they cancel and the new height of the tides becomes $54-25 = 29$ cm (\textit{neap tides}). 
+\section{The Angular Velocity Vector}
+We will now draw our attention to the motion of objects as seen in reference frames that are rotating relative to inertial frames. We will almost always consider a set of axes fixed to a rigid body, with the most common example being a set of axes fixed to the rotating earth. If the rotating body has no fixed point (such as a baseball rotating as it flies through the air), then we usually proceed in two steps: first, we find the motion of the center of mass, and then we analyze the rotational motion of the body relative to its center of mass. 
+
+The crucial result concering a body rotating about a fixed point is called \textbf{Euler's theorem} and states that the most general motion of any body relative to a fixed point $O$ is a rotation about some axis through $O$. This essentially means that to specify a rotation about a given point $O$, we need only give the direction of the axis and the angle of the rotation. 
+
+The direction of the axis can be specified by a unit vector $\mbf u$ and the rate by the number $\omega = \dd\theta/\dd t$. 
+
+It is often convenient to combine these two quantities to form an \textbf{angular velocity vector}
+\[ \bsm{\omega} = \omega\mbf u\]
+The direction of rotation is specified with the familiar right hand rule: stick your thumb in the direction of $\mbf u$, and then the direction your fingers curl is the direction of positive rotation. 
+\subsection*{A Useful Relation}
+There is a useful relationship between the angular velocity of a rigid body and the linear velocity of any point in the body. Consider, for instance, the earth, rotation with angular velocity $\bsm\omega$ about its center $O$. Next, consider any point $P$ fixed on (or in) the earth, with position $\mbf r$ relative to $O$. We can specify $\mbf r$ with its polar coordinate $(r,\theta,\phi)$ with $z$ axis pointing through the north pole, so that $\theta$ is the \textbf{colatitude} (the latitude measured down from the North Pole). As the earth turns about its axis, the point $P$ is dragged east around a circle of latitude, with radius $\rho = r\sin\theta$. This means that $P$ moves with speed $v = \omega r\sin\theta$. This means that $v= \abs{\bsm\omega \times \mbf r}$, and we can see from the right hand rule that $\mbf v$ points in the direction of $\bsm\omega\times\mbf r$, so
+\[ \mbf v = \bsm\omega\times\mbf r\]
+This is a generalization of the relationship $v=\omega r$ from introductory physics. It is worth emphasizing that this relationship extends to any vector fixed in the rotating body. For instance, if $\mbf e$ is a unit vector fixed in the body, then its rate of change, as seen from the non-rotating frame, is
+\[ \dv{\mbf e}{t} = \bsm\omega\times\mbf e\]
+\subsection*{Addition of Angular Velocities}
+Suppose that frame 2 is rotating with angular velocity $\bsm\omega_{21}$ relative to frame 1, and that body 3 is rotating with angular velocities $\bsm\omega_{31}$ and $\bsm\omega_{32}$ relative to frames 1 and 2.
+
+We already know that the translational velocities add, so that $\mbf v_{31} = \mbf v_{32} + \mbf v_{21}$. T32s implies
+\[ \bsm \omega_{31} \times \mbf r = \bsm\omega_{32}\times\mbf r + \bsm\omega_{21}\times \mbf r = (\bsm\omega_{32}+ \bsm\omega_{21})\times\mbf r\]
+therefore, $\bsm\omega_{31}=\bsm\omega_{32}+\bsm\omega_{21}$.
+\section{Time Derivatives in a Rotating Frame}
+Consider a frame $\mcl S$ rotating with angular velocity $\bsm \Omega$ relative to an inertial frame $\mcl S_0$. We will assume that the two frame share a common origin $O$, so that the only motion of $\mcl S$ relative to $\mcl S_0$ is the rotation.
+
+Consider an arbitrary vector $\mbf Q$. We will characterize the derivatives of $\mbf Q$ in both reference frames as
+\begin{align*}
+    \pqty{\dv{\mbf Q}{t}}_{\mcl S_0} &\equiv \text{(rate of change of vector $\mbf Q$ relative to $\mcl S_0$)} \\
+    \pqty{\dv{\mbf Q}{t}}_{\mcl S} &\equiv \text{(rate of change of vector $\mbf Q$ relative to $\mcl S$)}
+\end{align*}
+We will expand $\mbf Q$ in terms of an orthonormal coordinate system $\mbf e_1$, $\mbf e_2$, $\mbf e_3$ which is fixed relative to the rotating frame $\mcl S$. Thus, $\mbf Q = \sum_iQ_i\mbf e_i$.
+
+As seen in the inertial frame $\mcl S_0$, the unit vectors are rotating. With this new expansion, we can evaluate the derivatives of $\mbf Q$ as seen in either frame,
+\[ \pqty{\dv{\mbf Q}{t}}_{\mcl S} = \sum_i \dv{Q_i}{t} \mbf e_i\]
+and
+\[ \pqty{\dv{\mbf Q}{t}}_{\mcl S_0} =\sum_i \dv{Q_i}{t}\mbf e_i + \sum_i Q_i\pqty{\dv{\mbf e_i}{t}}_{\mcl S_0}\]
+The left sum is just $(\dd \mbf Q/\dd t)_{\mcl S}$. To evaluate the right sum, we will recall that
+\[ \pqty{\dv{\mbf e_i}{t}}_{\mcl S_0} = \bsm\Omega \times \mbf e_i\]
+Therefore,
+\begin{align*}
+    \pqty{\dv{\mbf Q}{t}}_{\mcl S_0} &= \pqty{\dv{\mbf Q}{t}}_{\mcl S} + \sum_i Q_i \bsm\Omega\times \mbf e_i \\
+    &= \pqty{\dv{\mbf Q}{t}}_{\mcl S} + \bsm\Omega \times \sum_i Q_i\mbf e_i \\
+    &= \pqty{\dv{\mbf Q}{t}}_{\mcl S} + \bsm\Omega \times \mbf Q
+\end{align*}
+This is an extremely important identity that allows us to properly analyze  the motion of objects within a non-inertial frame.
+\section{Newton's Second Law in a Rotating Frame}
+To simplify matters, assume that the angular velocity $\bsm \Omega$ of $\mcl S$ relative to $\mcl S_0$ is constant. A rather surprising fact about this is that if $\bsm \Omega$ is constant in one frame, then it is automatically constant in all frames. This follows from the fact that 
+\[ \pqty{\dv{\bsm \Omega}{t}}_{\mcl S_0} = \pqty{\dv{\bsm \Omega}{t}}_{\mcl S} + \bsm \Omega \times \bsm \Omega = \pqty{\dv{\bsm \Omega}{t}}_{\mcl S} = \mbf 0\]
+Consider now a particle of mass $m$ and position $\mbf r$. In the inertial frame, the particle obeys Newton's second law:
+\[ m\pqty{\dv[2]{\mbf r}{t}}_{\mcl S_0} = \mbf F\]
+We can use the equation for derivatives in a rotating frame to find
+\[ \pqty{\dv{\mbf r}{t}}_{\mcl S_0} = \pqty{\dv{\mbf r}{t}}_{\mcl S} + \bsm \Omega \times \mbf r \]
+and
+\begin{align*}
+    \pqty{\dv[2]{\mbf r}{t}}_{\mcl S_0} &=  \pqty{\dv{t}}_{\mcl S_0}\bqty{\pqty{\dv{\mbf r}{t}}_{\mcl S} + \bsm \Omega \times \mbf r} \\
+    &= \pqty{\dv{t}}_{\mcl S} \bqty{\pqty{\dv{\mbf r}{t}}_{\mcl S} + \bsm \Omega \times \mbf r} + \bsm\Omega \times \bqty{\pqty{\dv{\mbf r}{t}}_{\mcl S} + \bsm \Omega \times \mbf r} \\
+    &= \pqty{\dv[2]{\mbf r}{t}}_{\mcl S} + 2\bsm\Omega \times \pqty{\dv{\mbf r}{t}}_{\mcl S} + \bsm\Omega\times(\bsm\Omega\times \mbf r)
+\end{align*}
+If we use $\mbf{\dot Q}$ to denote the time-derivatives of $\mbf Q$ relative to $\mcl S$, this becomes
+\[  \pqty{\dv[2]{\mbf r}{t}}_{\mcl S_0} = \mbf{\ddot r} + 2\bsm\Omega \times \mbf{\dot r} + \bsm\Omega \times (\bsm\Omega\times \mbf r)\]
+So Newton's Second law yields
+\[ \mbf F =  m\mbf{\ddot r} + 2\bsm\Omega\times\mbf{\dot r} + \bsm\Omega\times(\bsm\Omega\times \mbf r) \]
+or
+\[ m\mbf{\ddot r} = \mbf F + 2m\mbf{\dot r}\times\bsm\Omega + m(\bsm\Omega\times\mbf r)\times\bsm\Omega\]
+where $\mbf F$ denotes the sum of all forces as identified in any inertial frame. The first of these terms we call the \textbf{Coriolis force}
+\[ \mbf F_\text{cor} = 2m\mbf{\dot r}\times\bsm\Omega \]
+and the second is the \textbf{centrifugal force}
+\[ \mbf F_\text{cf} = m(\bsm\Omega\times\mbf r)\times\bsm\Omega\]
+This result means that we are free to use Newton's Second Law in a rotating frame, provided that we remember to add these two ``ficticious" forces. That is, in a rotating frame,
+\[ m\mbf{\ddot r} = \mbf F + \mbf F_\text{cor} + \mbf F_\text{cf} \]
+\section{The Centrifugal Force}
+To some extent, we can consider the centrifugal and Coriolis forces separately. We will now concern ourselves with motion relative to the rotating frame of the earth. Within the frame of the earth, we can make a rough estimate of the magnitudes of the Coriolis and centrifugal forces,
+\[ F_\text{cor}\sim mv\Omega \quad\text{and}\quad F_\text{cf} \sim mR_E\Omega^2\]
+where $R_E$ is the radius of the earth and $v$ is the speed of the particle relative to the noninertial frame (relative to the earth).
+
+To determine the relative importance of these two, we have
+\[ \frac{F_\text{cor}}{F_\text{cf}} \sim \frac{v}{R_E\Omega} = \frac{v}{V}\]
+where $V\approx 460$ m/s is the speed at which a point on the surface of the earth rotates relative to an inertial frame. Therefore, when $v\ll 460$ m/s, the centrifugal force dominates and we can safely ignore the Coriolis force.
+
+Recall that the centrifugal force is given by
+\[ \mbf F_\text{cf} = m(\bsm \Omega\times\mbf r)\times\bsm \Omega\]
+An object on the earth with a colatitude $\theta$ is carried around a circle of latitude with radius $\rho = r\sin\theta$. The vector $\bsm\Omega\times\mbf r$ is tangent to this circle and the vector $(\bsm \Omega\times \mbf r)\times \bsm \Omega$ points radially outward from the colatitude circle. The angle between $\bsm\Omega$ and $\mbf r$ is $\theta$ and the angle between $(\bsm\Omega\times\mbf r)$ and $\bsm\Omega$ is $\pi/2$. Thus, the magnitude $F_\text{cf} = m\Omega^2r\sin\theta = m\Omega^2\rho$. Then,
+\[ \mbf F_\text{cf} = m\Omega^2\rho \bsm{\hat \rho} \]
+In other words, from the perspective of an observer on the rotating earth, there is a centrifugal force with magnitude $m\Omega^2\rho$ pointing outward from the earth's axis. If we let $\mbf v = \bsm\Omega\times\mbf r$ denote the tangential velocity of a point on the surface of the earth, we get $v =\Omega \rho$ and then $F_\text{cf}$ takes the familiar form $mv^2/\rho$.
+\subsection*{Free Fall Acceleration}
+The free fall acceleration we call $\mbf g$ is the inertial acceleration, relative to the earth, of an object in a vacuum near the earth's surface. The equation of motion (relative to the earth) is
+\begin{align*}
+    m\mbf{\ddot r} &= \mbf{F}_\text{grav} + \mbf{F}_\text{cf} \\
+    &= -\frac{GMm}{r^2}\rhat + m\Omega^2\rho\bsm{\hat\rho}
+\end{align*}
+If we denote $(-GM/r^2)\rhat \equiv \mbf{g}_0$, we find
+\[ \mbf F_\text{eff} = \mbf F_\text{grav} + \mbf F_\text{cf} = m\mbf g_0 + m\Omega^2 R\sin\theta\bsm{\hat\rho} \]
+And if we define $\mbf g = \mbf g_0 + \Omega^2R\sin\phi \bsm{\hat\rho}$, we get $\mbf F_\text{eff} = m\mbf g$. The component of $\mbf g$ in the inward radial direction $-\rhat$ direction is given by $g_\text{rad} = g_0 - \Omega^2R\sin^2\theta $, and the component of $\mbf g$ in the tangential direction is $g_\text{cf} = \Omega^2R\sin\theta\cos\theta$.
+
+Focusing on the radial component $g_\text{rad} = g_0 - \Omega^2R\sin^2\theta$, we find that it is equal to the usual value of $g_0 \approx 9.81$ m/s$^2$ at the poles, but decreases by as much as $\Omega^2R \approx 0.0034$ m/s$^2$ at the equator. This means that gravity is slightly weaker at the equator than it is at the poles.
+
+The tangential component $g_\text{tan} = \Omega^2R\sin\theta\cos\theta$ is zero at the poles and at the equator, and has a maximum value at $\theta = \pi/4$ or $\theta = 3\pi/4$. The effect of this tangential gravitational force is to ever so slightly pull you towards the equator. This is fascinating because it goes against our traditional idea of gravity going directly down. This (miniscule, but certainly nonzero) tangential component means that gravity does not only go towards the center of the earth, but deviates by as much as $(g_\text{tan}/g_\text{rad})_\text{max} \approx 1^\circ$ at $\theta=45^\circ$.
+\section{The Coriolis Force}
+Of course, there are many scenarios where the Coriolis force is far from negligible. Recall that the Coriolis force is given by $\mbf F_\text{cor} = 2m\mbf{\dot r}\times \bsm\Omega$. There is a remarkable parallel between the Coriolis force and the magnetic force $\mbf F_B = q\mbf{\dot r}\times\mbf B$ of a moving particle. These formulas look quite similar; although this is simply a coincidence with no physical reason, it can help us visualize the effect of the Coriolis force with a parallel to the more familiar magnetic force. 
+
+Like the magnetic force, the Coriolis force is always perpendicular to the velocity of the moving object, with its direction given by the right hand rule. 
+
+If we imagine an object on a rotating turntable, the angular velocity $\bsm\Omega$ points vertically up (if it's rotating clockwise), and so the Coriolis force tries to deflect the object to the right of its current velocity. If the turntable was instead turning counterclockwise, the Coriolis force tries to deflect the object to the left. 
+
+\subsection*{Free Fall and the Coriolis Force}
+Next, consider an object falling in a vacuum close to a point $\mbf R$ on the earth's surface. The equation of motion is
+\begin{align*}
+    m\mbf{\ddot r} &=m\mbf g_0 + \mbf F_\text{cf} + \mbf F_\text{cor} \\
+    &=m\mbf g + 2m\mbf{\dot r} \times \bsm\Omega
+\end{align*}
+So $\mbf{\ddot r} = \mbf{g} + 2\mbf{\dot r}\times\bsm\Omega$ Because this equation does not depend on $\mbf r$ at all, only its derivatives, we can move the origin anywhere we wish without changing the math. So we'll put the origin at $\mbf R$, with $z$ pointing along the effective gravitational pull $\mbf g$ (note that this is \textit{not} exactly the same as $z$ pointing radially outward, as we found in the previous section), and $x$ and $y$ pointing horizontally east and north respectively. The components of $\mbf{\dot r}$ and $\bsm{\Omega}$ are then
+\[ \mbf{\dot r} = (\dot x, \dot y,\dot z)\quad\text{and}\quad \bsm\Omega = (0, \Omega\sin\theta, \Omega\cos\theta) \]
+Thus, those of $\mbf{\dot r}\times\bsm\Omega$ are 
+\[ \mbf{\dot r}\times\bsm\Omega = (\dot y\Omega\cos\theta-\dot z\Omega\sin\theta, -\dot x\Omega\cos\theta, \dot x\Omega\sin\theta)\]
+so the equation of motion becomes
+\begin{align*}
+    \ddot x &= 2\Omega(\dot y\cos\theta - \dot z\sin\theta) \\
+    \ddot y &= -2\Omega\dot x\cos\theta \\
+    \ddot z &= -g + 2\dot x\Omega\sin\theta
+\end{align*}
+A reasonable starting approximation arises from how small $\Omega$ is, allowing us to ignore all of those terms entirely and giving $\ddot z = -g$, while $\ddot x=\ddot y = 0$. Indeed, this is what we do in introductory physics. This is known as the \textbf{zeroth-order} approximation because it only involves the zeroth power of $\Omega$ (that is; it ignores it entirely)
+
+To get the next, slightly more accurate approximation, we plug the terms from our zeroth order approximation back into the equations of motion, giving
+\begin{align*}
+    \ddot x &= 2\Omega(\dot y\cos\theta -\dot z\sin\theta) = 2gt\Omega \sin\theta \\
+    \ddot y &= -2\Omega\dot x\cos\theta = 0 \\
+    \ddot z &= -g + 2\dot x\Omega\sin\theta = -g
+\end{align*}
+This is the first order approximation. We can repeat this process as many times as we wish, but the first order approximation is sufficient for our purposes.
+
+To get an idea of the magnitude of this effect, consider an object dropped down a 100 meter deep mineshaft at the equator. The time to reach the bottom can be easily determined to be $t= \sqrt{2h/g}$, and so we can find the amount of movement in the $x$ direction that the object experiences:
+\[ x = \frac{1}{3}gt^3\Omega\sin\theta \approx 2.2\text{ cm}\]
+a small deflection, but certainly noticeable. 
+\section{The Foucault Pendulum}
+As a final and striking application of the Coriolis force, consider the Foucault pendulum. The Foucault pendulum consists of a very heavy mass $m$ suspended by a light wire from a very tall ceiling. As seen in an inertial frame, there are just two forces; $\mbf T$ and $\mbf g_0$. From the rotating frame of the earth, we get the new effective gravity $\mbf g$ as well as the Coriolis force, so
+\[ m\mbf{\ddot r} = \mbf T + m\mbf g + 2m\mbf{\dot r}\times\bsm\Omega\]
+We will choose our axes in the same way as we did in the previous section, so $\zhat$ points in the direction of $-\mbf g$ and $\xhat$ and $\yhat$ are orthogonal to that, in the horizontal directions.
+
+Letting $\beta$ be the angle between the pendulum and the $z$ axis, we can restrict our view to small oscillations. With this simplification, we approximately say that the $z$ component of $\mbf T$ is well-approximated by the magnitude, so $T_z\approx T$. Since $T_z = T\cos\beta$, we have $T \approx T\cos\beta$. Additionally, since $\mbf{\dot r}$ and $\mbf{\ddot r}$ are small in this limiting case, we have $T_z\approx mg$, so $T\approx mg$.
+
+To examine the $x$ and $y$ components of the motion, we can notice that $T_x/T = -x/L$ and $T_y/T = -y/L$ (the triangle formed by $\mbf T_x$ and $\mbf T$ is similar to the triangle formed by $x\xhat$ and $L\mbf{\hat T}$). The minus sign comes from the fact $T_x/T$ only encodes the magnitude, so we want to ensure that the tension points back towards the origin.
+
+Thus, we see $T_x = -xT/L = -mgx/L$ and $T_y = -yT/L = -mgy/L$. 
+
+The $x$ and $y$ components of $\mbf g$ are of course zero.
+
+For the Coriolis term, we compute the cross product to find
+\begin{align*}
+    \mbf F_\text{cor} &= 2m\begin{vmatrix}
+        \xhat & \yhat & \zhat \\
+        \dot x & \dot y & \dot z \\
+        \Omega_x & \Omega_y & \Omega_z
+    \end{vmatrix} =2m\begin{vmatrix}
+        \xhat & \yhat & \zhat \\
+        \dot x & \dot y & \dot z \\
+        0 & \Omega_y & \Omega_z
+    \end{vmatrix} \\
+    &= 2m\bqty{\pqty{\dot y\Omega_z - \dot z\Omega_y}\xhat + (-\dot x\Omega_z)\yhat + (\dot x\Omega_y)\zhat}
+\end{align*}
+We will ignore the motion in the $z$ direction and focus solely on the $x$ and $y$ directions. Further, since $\dot z$ is negligible compared to $\dot y$ and $\dot z$, we write
+\[ \mbf F_\text{cor} \approx (2m\dot y\Omega_z)\xhat + (-2m\dot x\Omega_z)\]
+Which tells us that
+\begin{align*}
+    \ddot x &= -gx/L + 2\dot x\Omega_z \\
+    \ddot y &= -gy/L - 2\dot y\Omega_z
+\end{align*}
+We can introduce the parameter $\omega_0^2 = g/L$ and rearrange to find
+\begin{align*}
+    \ddot x -  2\dot y\Omega_z +\omega_0^2x &= 0\\
+    \ddot y + 2\dot x\Omega_z + \omega_0^2y &= 0
+\end{align*}
+To solve these coupled equations, introduce the complex $\eta = x+iy$. Multiplying the $\ddot y$ equation by $i$ and adding it to the $\ddot x$ equation, we find
+\[ (\ddot x +i\ddot y) +2\Omega_z(-\dot y+ i\dot x) + \omega_0^2(x+iy) = 0\]
+or, noting that $-\dot y + i\dot x = i(\dot x+i\dot y)$,
+\[ \ddot\eta + 2i\Omega_z\dot \eta + \omega_0^2\eta = 0\]
+This is a familiar second order linear differential equation, for which we can guess the solution $\eta = e^{\alpha t}$ for some $\alpha$. The characteristic equation is then $\alpha^2 +2i\Omega_z\alpha + \omega_0^2 = 0$, or
+\begin{align*}
+    \alpha &= -i\Omega_z \pm \frac{1}{2}\sqrt{-4\Omega_z^2 - 4\omega_0^2} \\
+    &= -i\Omega_z \pm i\sqrt{\Omega_z^2+\omega_0^2} \\
+    &\approx -i(\Omega_z \pm \omega_0)
+\end{align*}
+Where the last line follows form the fact that $\omega_0\gg \Omega_z$. Therefore, we find 
+\[ \eta = e^{-i\Omega_z t}\pqty{C_1e^{i\omega_0t} + C_2e^{-i\omega_0t}} \]
+So the general solution for the equations of motion is 
+\begin{align*}
+    x(t) &= \Re e^{-i\Omega_z t}(C_1e^{i\omega_0t}+C_2e^{-i\omega_0t}) \\
+    y(t) &= \Im e^{-i\Omega_z t}(C_1e^{i\omega_0t}+C_2e^{-i\omega_0t}) 
+\end{align*}
+To interpret this physically, let's plug in some initial conditions. Suppose that at $t=0$, we pendulum is pulled entirely in the $x$ direction at $x=A$ and $y=0$, and released from rest. Then,\begin{align*}
+    \eta(0) = A &= C_1+C_2 \\
+    \dot\eta(0) = 0 &= -i\Omega_z(C_1+C_2) + i\omega_0(C_1-C_2) \\
+    &\approx i\omega_0(C_1-C_2)
+\end{align*}
+Since $\Omega_z\ll\omega_0$. These two equations combine to tell us $C_1=C_2=A/2$. $\eta(t)$ then becomes
+\begin{align*}
+    \eta (t) &= e^{-i\Omega_z t}\pqty{\frac{A}{2}e^{i\omega_0 t}+\frac{A}{2}e^{-i\omega_0t }} \\
+    &= \frac{A}{2}e^{-i\Omega_z t}\pqty{\cos(\omega_0t) + i\sin(\omega_0t) + \cos(-\omega_0t)+\sin(-\omega_0t)} \\
+    &= Ae^{-i\Omega_z t}\cos(\omega_0 t)
+\end{align*}
+Thus
+\begin{align*}
+    x(t) &= A\cos(\Omega_z t)\cos(\omega_0t) \\
+    y(t) &= A\sin(\Omega_z t)\cos(\omega_0 t) 
+\end{align*}
+This can be interpreted as saying that initally, the pendulum oscillates between $x = \pm A$ with the natural frequency of the pendulum while $y$ stays more or less zero (since $\Omega_z t$ is small). As $t$ gets large (on the order of about an hour), the oscillation starts to shift, corresponding to a rotation of $\eta$ in the complex plane by $-\Omega_z t$. Then, once $\Omega_z t = \pi/2$, the pendulum oscillations are purely in the $y$ direction.
+
+If the pendulum is located at a colatitude $\theta$, $\Omega_z = \Omega\cos\theta$. At the north equator, $\theta=\pi/2$ and so this entire oscillatory behavior described is nonexistent; the equations reduce to $x(t) = A\cos\omega _0t$ and $y(t) = 0$. As soon as $\theta\neq\pi/2$, however, these oscillations begin to show, with a rate determined by the value of $\cos(\Omega\cos\theta)$. For instance, at a colatitude of about $48^\circ$ (near Chicago), we find 
+\[ \Omega_z = \Omega\cos 48^\circ \approx \frac{2}{3}\Omega \]
+Since $\Omega = 360^\circ/$day, $\Omega_z = 240^\circ$/day, and so $\eta$ rotates by about $240^\circ$ in $24$ hours, an effect we are easily able to measure.
